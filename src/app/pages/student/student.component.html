@@ -1,0 +1,111 @@
+<div style="height: 100%">
+  <nz-card class="ss-program-content" style="height: 100%" [nzBodyStyle]="{ height: '100%' }">
+    <div class="d-flex flex-column" style="height: 100%">
+      <div nz-row>
+        <div nz-col [nzSpan]="24">
+          <h3>รายชื่อนักศึกษา</h3>
+        </div>
+      </div>
+      <br />
+      <nz-collapse>
+        <nz-collapse-panel class="collapse-header" nzHeader="ค้นหา" [nzActive]="true">
+          <form [formGroup]="searchForm" nzLayout="'vertical'" class="ss-form-search-criteria">
+            <nz-row nz-row [nzGutter]="24" class="center">
+              <div nz-col  nzSm="0" nzMd="2"></div>
+                <div nz-col  nzSm="3" nzMd="6">
+                  <nz-form-item>
+                    <nz-form-label> ระดับชั้น </nz-form-label>
+                    <nz-form-control>
+                      <nz-select nzAllowClear nzPlaceHolder=" " formControlName="year">
+                          <nz-option nzLabel="ปวช.1" nzValue="ปวช.1"></nz-option>
+                          <nz-option nzLabel="ปวช.2" nzValue="ปวช.2"></nz-option>
+                          <nz-option nzLabel="ปวช.3" nzValue="ปวช.3"></nz-option>
+                          <nz-option nzLabel="ปวส.1" nzValue="ปวส.1"></nz-option>
+                          <nz-option nzLabel="ปวส.2" nzValue="ปวส.2"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSm="5" nzMd="10">
+                  <nz-form-item>
+                    <nz-form-label> สาขา </nz-form-label>
+                    <nz-form-control>
+                      <nz-select nzAllowClear nzPlaceHolder=" " formControlName="branch">
+                          <nz-option nzLabel="การบัญชี" nzValue="การบัญชี"></nz-option>
+                          <nz-option nzLabel="การตลาด" nzValue="การตลาด"></nz-option>
+                          <nz-option nzLabel="คอมพิวเตอร์กราฟิก" nzValue="คอมพิวเตอร์กราฟิก"></nz-option>
+                          <nz-option nzLabel="การโรงแรมและบริการ" nzValue="การโรงแรมและบริการ"></nz-option>
+                          <nz-option nzLabel="ธุรกิจร้านอาหารและภัตตาคาร" nzValue="ธุรกิจร้านอาหารและภัตตาคาร"></nz-option>
+                          <nz-option nzLabel="การจัดการธุรกิจค้าปลีก" nzValue="การจัดการธุรกิจค้าปลีก"></nz-option>
+                          <nz-option nzLabel="สปาและความงาม" nzValue="สปาและความงาม"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col nzSm="2" nzMd="4">
+                  <nz-form-item>
+                    <nz-form-control>
+                      <button nz-button nzType="primary" [disabled]="!searchForm.valid">ค้นหา</button>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+
+            </nz-row>
+          </form>
+        </nz-collapse-panel>
+      </nz-collapse>
+      <br />
+      <nz-collapse>
+        <nz-collapse-panel class="collapse-header" nzHeader="รายชื่อ" [nzActive]="true">
+          <div class="d-flex flex-column" style="height: 100%">
+            <div class="flex-grow">
+              <div nz-row [nzGutter]="24">
+                <div nz-col [nzSpan]="24">
+
+                    <div #tableContainer class="table_container">
+                      <nz-table #basicTable [nzData]="listOfData" #headerTable [nzPageSize]="50" [nzScroll]="{ y: '340px' }">
+                        <thead>
+                          <tr>
+                            <th nzAlign="center" nzShowSort nzColumnKey="rowNum" nzWidth="250px">
+                              เลขนักศึกษา
+                            </th>
+                            <th nzAlign="center" nzColumnKey="rowNum" nzWidth="250px">
+                              ชื่อ
+                            </th>
+                            <th nzAlign="center" nzColumnKey="rowNum" nzWidth="250px">
+                              นามสกุล
+                            </th>
+                            <th nzAlign="center" nzColumnKey="rowNum" nzWidth="250px">
+                              สาขา
+                            </th>
+                            <th nzAlign="center" nzColumnKey="rowNum" nzWidth="250px">
+                              จัดการ
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let data of basicTable.data">
+                            <td nzAlign="center">{{data.stdPrename}}{{data.stdId}}</td>
+                            <td nzAlign="center">{{data.stdName}}</td>
+                            <td nzAlign="center">{{data.stdLastName}}</td>
+                            <td nzAlign="center">{{data.branch}}</td>
+                            <td nzAlign="center">
+                            <!-- <button nz-button nzType="primary" (click)="cancel(data.stdId)" nzDanger>ลบ
+                              </button> -->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </nz-table>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+      <br />
+    </div>
+  </nz-card>
+</div>
+<ng-template> </ng-template>

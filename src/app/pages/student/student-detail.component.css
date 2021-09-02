@@ -1,0 +1,7 @@
+[nz-form] {
+  max-width: 600px;
+}
+button {
+  margin: 0 auto;
+  display: block;
+}

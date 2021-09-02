@@ -1,0 +1,165 @@
+<div style="height: 100%">
+  <nz-card
+    class="ss-program-content"
+    style="height: 100%"
+    [nzBodyStyle]="{ height: '100%' }"
+  >
+    <div class="d-flex flex-column" style="height: 100%">
+      <div nz-row>
+        <div nz-col [nzSpan]="24">
+          <h3>เพิ่มนักศึกษา</h3>
+        </div>
+      </div>
+      <br />
+      <nz-collapse>
+        <nz-collapse-panel
+          class="collapse-header"
+          nzHeader="เพิ่ม"
+          [nzActive]="true"
+        >
+          <form
+            [formGroup]="saveForm"
+            nzLayout="'vertical'"
+            class="ss-form-search-criteria"
+          >
+            <nz-row nz-row [nzGutter]="24" class="center">
+              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>คำนำหน้า</nz-form-label>
+                  <nz-form-control>
+                    <nz-select
+                      nzAllowClear
+                      nzPlaceHolder="คำนำหน้า"
+                      formControlName="stdPrename"
+                    >
+                      <nz-option nzLabel="นาย" nzValue="นาย"></nz-option>
+                      <nz-option nzLabel="นาง" nzValue="นาง"></nz-option>
+                      <nz-option nzLabel="นางสาว" nzValue="นางสาว"></nz-option>
+                      <nz-option
+                        nzLabel="เด็กหญิง"
+                        nzValue="เด็กหญิง"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="เด็กชาย"
+                        nzValue="เด็กชาย"
+                      ></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>ชื่อ</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      formControlName="stdName"
+                      placeholder="กรอกชื่อ"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>นามสกุล</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      formControlName="stdLastname"
+                      placeholder="กรอกนามสกุล"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </nz-row>
+            <nz-row nz-row [nzGutter]="24" class="center">
+              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>สาขา</nz-form-label>
+                  <nz-form-control>
+                    <nz-select
+                      nzAllowClear
+                      nzPlaceHolder="ชื่อสาขา"
+                      formControlName="branch"
+                    >
+                      <nz-option
+                        nzLabel="การบัญชี"
+                        nzValue="การบัญชี"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="การตลาด"
+                        nzValue="การตลาด"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="คอมพิวเตอร์กราฟิก"
+                        nzValue="คอมพิวเตอร์กราฟิก"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="การโรงแรมและบริการ"
+                        nzValue="การโรงแรมและบริการ"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="ธุรกิจร้านอาหารและภัตตาคาร"
+                        nzValue="ธุรกิจร้านอาหารและภัตตาคาร"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="การจัดการธุรกิจค้าปลีก"
+                        nzValue="การจัดการธุรกิจค้าปลีก"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="สปาและความงาม"
+                        nzValue="สปาและความงาม"
+                      ></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>รหัสนักศึกษา</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      formControlName="stdId"
+                      placeholder="รหัสนักศึกษา"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+                <nz-form-item>
+                  <nz-form-label nzRequired>เลขบัตรประชาชน</nz-form-label>
+                  <nz-form-control>
+                    <input
+                      nz-input
+                      formControlName="idCard"
+                      placeholder="เลขบัตรประชาชน"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </nz-row>
+            <div nz-row [nzGutter]="24">
+              <div nz-col [nzSpan]="24" nzAlign="center">
+                <button
+                  type="button"
+                  nz-button
+                  nzType="primary"
+                  (click)="save()"
+                  class="center"
+                >
+                  เพิ่ม
+                </button>
+              </div>
+            </div>
+          </form>
+        </nz-collapse-panel>
+      </nz-collapse>
+      <br />
+      <br />
+    </div>
+  </nz-card>
+</div>
+<ng-template> </ng-template>
