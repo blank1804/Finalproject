@@ -6,20 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: StudentComponent,
-    resolve: {
-      //student: StudentResolverService
-    },
     data: { title: 'Student', pageId: 'student', backShow: true },
-    //canActivate: [AuthGuard],
   }
   , {
     path: 'detail',
     component: StudentDetailComponent,
-    resolve: {
-      //student: StudentResolverService
-    },
-    //canActivate: [AuthGuard],
-    //canDeactivate: [CanDeactivateGuard],
+
     data: { title: 'StudentDetail', pageId: 'studentDetail', backShow: true },
   }
 ];

@@ -5,6 +5,10 @@
     [nzBodyStyle]="{ height: '100%' }"
   >
     <div class="d-flex flex-column" style="height: 100%">
+      <nz-page-header-extra>
+        <button nz-button>Operation</button>
+        <button nz-button nzType="primary"><a routerLink="/student">List</a></button>
+      </nz-page-header-extra>
       <div nz-row>
         <div nz-col [nzSpan]="24">
           <h3>เพิ่มนักศึกษา</h3>
@@ -148,7 +152,7 @@
                   nz-button
                   nzType="primary"
                   (click)="save()"
-                  class="center"
+                  class="buttoncenter"
                 >
                   เพิ่ม
                 </button>

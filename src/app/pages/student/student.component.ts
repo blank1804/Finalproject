@@ -30,6 +30,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
   loadingTable = false;
   total = 1;
   listOfData = [];
+  id:any;
   stdId: any;
   stdPrename: any;
   stdName: any;
@@ -75,7 +76,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
     }
     this.loadingTable = true;
     Object.assign(this.searchModel, this.keyword);
-    this.page.sorts = [{ colId: this.sortName || 'rowNum', sort: this.sortValue || 'asc' }];
+    this.page.sorts = [{ colId: this.sortName || 'id', sort: this.sortValue || 'asc' }];
     this.studentService.search(this.searchModel, this.page).pipe(
       finalize(() => {
       }))
