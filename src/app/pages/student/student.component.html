@@ -5,10 +5,9 @@
     [nzBodyStyle]="{ height: '100%' }"
   >
     <div class="d-flex flex-column" style="height: 100%">
-      <nz-page-header-extra>
-        <button nz-button>Operation</button>
-        <button nz-button nzType="primary">
-          <a routerLink="/student/detail">Add</a>
+      <nz-page-header-extra class="headex">
+        <button class="buttontool" nz-button nzType="primary">
+          <a routerLink="/student/detail">เพิ่มนักศึกษา</a>
         </button>
       </nz-page-header-extra>
       <div nz-row>
@@ -168,7 +167,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngForOf="let data of studentTable.data">
+                        <tr *ngFor="let data of studentTable.data">
                           <td nzAlign="center">{{ data.stdId }}</td>
                           <td nzAlign="center">
                             {{ data.stdPrename }}{{ data.stdName }}

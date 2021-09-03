@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');*{
+  font-family: 'Prompt', sans-serif;}
+  .headex{
+    text-align: right;
+    padding-right: 5%;
+  }
+
+  .buttontool{
+    width: 120px;
+  }
+  .buttoncenter {
+    margin: 0 auto;
+    display: block;
+  }
+.savebutton{
+  width: 100px;
+}

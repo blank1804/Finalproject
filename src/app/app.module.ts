@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { StudentModule } from './pages/student/student.module';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -92,7 +90,6 @@ registerLocaleData(th);
   imports: [
     StudentRoutingModule,
     BrowserModule,
-    StudentModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

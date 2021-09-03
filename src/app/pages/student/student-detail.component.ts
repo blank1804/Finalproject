@@ -5,6 +5,9 @@ import { Observable, Observer } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SaveModel, StudentService } from './student.service';
 import { finalize } from 'rxjs/operators';
+import { LoadingService } from 'src/app/core/loading/loading.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-student',
@@ -15,51 +18,76 @@ export class StudentDetailComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private sv: StudentService,
+    private loading: LoadingService,
+    private modal: NzModalService,
+    private notification: NzNotificationService
   ) { }
   ngOnInit(): void {
   }
-  saveModel: SaveModel = {} as SaveModel;
 
+
+  isLoadingOne = false;
+  saveModel: SaveModel = {} as SaveModel;
+  detail = true;
   saveForm = this.formBuilder.group({
-    stdId: null,
-    stdPrename: null,
-    stdName: null,
-    stdLastname: null,
-    branch: null,
-    idCard: null,
+    stdId: [null, [Validators.required]],
+    stdPrename: [null, [Validators.required]],
+    stdName: [null, [Validators.required]],
+    stdLastname: [null, [Validators.required]],
+    branch: [null, [Validators.required]],
+    idCard: [null, [Validators.required]],
 
   });
 
-  // save(): void {
-  //   let warning: number = 0;
-  //   for (const i in this.saveForm.controls) {
-  //     this.saveForm.controls[i].markAsDirty();
-  //     this.saveForm.controls[i].updateValueAndValidity();
-  //   }
-  //   if (this.saveForm.invalid) {
+  save(): void {
+    let warning: number = 0;
+    if (this.saveForm.invalid) {
+      for (const i in this.saveForm.controls) {
+        this.saveForm.controls[i].markAsDirty();
+        this.saveForm.controls[i].updateValueAndValidity();
+      }
+      this.notification.error('แจ้งเตือน', 'กรุณากรอกข้อมูลให้ครบถ้วน');
+      warning++;
+    }
+    if (warning > 0) {
+      return;
+    }
+    this.saveForm.disable();
+    this.modal.confirm({
+      nzTitle: '<i>Save?</i>',
+      nzContent: '<b>ต้องการที่จะเพิ่มนักศึกษาคนนี้ใช่หรือไม่</b>',
+      nzOnOk: () => this.saveConfirm()
+    });
+    this.detail = true;
+  }
 
-  //     return;
-  //   }
-  //   this.confirmInfo('Message.IS00109', '', 'Message.IS00044', 'Message.IS00045').pipe()
-  //     .subscribe((res: any) => {
-  //       if (res) {
-  //         this.saveForm.disable();
-  //         this.saveConfirm();
-  //         // this.detail = true;
-  //       }
-  //     }
-  //     );
-  // }
-  save() {
+
+  saveConfirm() {
+    this.isLoadingOne = true;
+    // this.loading.show();
     Object.assign(this.saveModel, this.saveForm.value);
     this.sv.save(this.saveModel).pipe(
       finalize(() => {
+        // this.loading.hide();
+        this.notification.success('สำเร็จ', 'บันทึกสำเร็จแล้ว');
+        this.saveForm.enable();
+        this.saveForm.reset();
+        this.isLoadingOne = false;
+
       }))
       .subscribe((res: any) => {
         if (res.success) {
-        }
-      });
-  }
 
+          this.notification.success('สำเร็จ', 'บันทึกสำเร็จแล้ว');
+
+        }
+      },
+        error => {
+          this.notification.error('Error', error.error.message);
+        });
+  }
+clear(){
+  this.saveForm.reset();
+}
 
 }
