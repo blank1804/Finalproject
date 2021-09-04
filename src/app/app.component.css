@@ -1,9 +1,9 @@
-:host {
+/* :host {
   display: flex;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 .app-layout {
   height: 100vh;
@@ -77,5 +77,44 @@ nz-content {
   padding: 24px;
   background: #fff;
   height: 100%;
+}
+
+/* ------------------------------------------------------ */
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  color: #fff;
+
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+  background-color: #6ECEDE;
+  outline:#fff;
+  font-size: 20px;
+  height: 50px;
+}
+.lol{
+  background-color: #001529;
+  color: #fff;
+  margin: 0 auto;
+  display: block;
+  padding-top: 30vh;
+  box-shadow:#001529;
+  border-radius: 20px;
+  box-shadow: #001529;
+
+}
+.hhlog{
+  font-size: 90px;
+  text-align: center;
 }
 

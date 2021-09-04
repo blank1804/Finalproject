@@ -167,7 +167,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let data of studentTable.data">
+                        <tr *ngForOf="let data of studentTable.data">
                           <td nzAlign="center">{{ data.stdId }}</td>
                           <td nzAlign="center">
                             {{ data.stdPrename }}{{ data.stdName }}
