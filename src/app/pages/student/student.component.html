@@ -31,11 +31,14 @@
               <div nz-col nzSm="0" nzMd="2"></div>
               <div nz-col nzSm="3" nzMd="6">
                 <nz-form-item>
-                  <nz-form-label> ระดับชั้น </nz-form-label>
+                  <nz-form-label nzFor="year"> ระดับชั้น </nz-form-label>
                   <nz-form-control>
                     <nz-select
+                      nzShowSearch
                       nzAllowClear
                       nzPlaceHolder=" "
+                      id="year"
+                      name="year"
                       formControlName="year"
                     >
                       <nz-option nzLabel="ปวช.1" nzValue="ปวช.1"></nz-option>
@@ -49,10 +52,13 @@
               </div>
               <div nz-col nzSm="5" nzMd="10">
                 <nz-form-item>
-                  <nz-form-label> สาขา </nz-form-label>
+                  <nz-form-label nzFor="branch"> สาขา </nz-form-label>
                   <nz-form-control>
                     <nz-select
                       nzAllowClear
+                      nzShowSearch
+                      id="branch"
+                      name="branch"
                       nzPlaceHolder=" "
                       formControlName="branch"
                     >
@@ -94,6 +100,7 @@
                     <button
                       nz-button
                       nzType="primary"
+                      (click)="search(true)"
                       [disabled]="!searchForm.valid"
                     >
                       ค้นหา
@@ -118,7 +125,7 @@
                 <div nz-col [nzSpan]="24">
                   <div #tableContainer class="table_container">
                     <nz-table
-                      #studentTable
+                      #basicTable
                       nzBordered
                       [nzData]="listOfData"
                       nzSize="small"
@@ -132,12 +139,12 @@
                       #headerTable
                       [nzScroll]="{ y: '340px' }"
                     >
-                      <thead  nzSortFn>
+                      <thead nzSortFn>
                         <tr>
                           <th
                             nzAlign="center"
                             nzShowSort
-                            nzColumnKey="stdId"
+                            nzColumnKey="id"
                             nzWidth="250px"
                           >
                             เลขนักศึกษา
@@ -151,7 +158,7 @@
                           </th>
                           <th
                             nzAlign="center"
-                            nzColumnKey="stdLastName"
+                            nzColumnKey="stdLastname"
                             nzWidth="250px"
                           >
                             นามสกุล
@@ -167,16 +174,39 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngForOf="let data of studentTable.data">
+                        <tr *ngFor="let data of basicTable.data">
                           <td nzAlign="center">{{ data.stdId }}</td>
                           <td nzAlign="center">
-                            {{ data.stdPrename }}{{ data.stdName }}
+                            {{ data.stdPrename }} {{ data.stdName }}
                           </td>
-                          <td nzAlign="center">{{ data.stdLastName }}</td>
+                          <td nzAlign="center">{{ data.stdLastname }}</td>
                           <td nzAlign="center">{{ data.branch }}</td>
                           <td nzAlign="center">
-                          <!-- <button nz-button nzType="primary" (click)="cancel(data.stdId)" nzDanger>ลบ
-                              </button> -->
+                            <nz-button-group>
+                            <button
+                              nz-button
+                              nzType="default"
+                              (click)="cancel(data.id)"
+                              nzDanger
+                            >
+                              <i nz-icon nzType="edit" nzTheme="outline"></i>
+                            </button>
+                            <button
+                              nz-button
+                              nzType="primary"
+                              (click)="cancel(data.id)"
+                              nzDanger
+                            >
+                              <i nz-icon nzType="delete" nzTheme="outline"></i>
+                            </button>
+                            <button
+                              nz-button
+                              nzType="primary"
+                              (click)="cancel(data.id)"
+                            >
+                              จัดการเกรด
+                            </button>
+                          </nz-button-group>
                           </td>
                         </tr>
                       </tbody>

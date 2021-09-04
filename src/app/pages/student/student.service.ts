@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 // import { ComboBox} from '@shared/interface/interface';
 import { environment } from 'src/environments/environment';
 export interface SearchModel extends Page {
-  stdId: number,
+  id:number,
+  stdId: string,
   stdPrename: string,
   stdName: string,
   stdLastname: string,
@@ -13,7 +14,7 @@ export interface SearchModel extends Page {
   idCard: string,
 }
 export interface SaveModel {
-  stdId: number,
+  stdId: string,
   stdPrename: string,
   stdName: string,
   stdLastname: string,
@@ -22,7 +23,7 @@ export interface SaveModel {
 
 }
 export interface GetDetail {
-  stdId: number;
+  stdId: string;
 
 }
 
@@ -34,11 +35,15 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  search(model: SearchModel, page: Page) {
-    model.pageNumber = page.pageNumber;
-    model.pageSize = page.pageSize;
-    model.sorts = page.sorts;
-    return this.http.post<any>(`${this.resourceUrl}/search`, model);
+  // search(model: SearchModel, page: Page) {
+  //   model.pageNumber = page.pageNumber;
+  //   model.pageSize = page.pageSize;
+  //   model.sorts = page.sorts;
+  //   return this.http.post<any>(`${this.resourceUrl}/search`, model);
+  // }
+
+  search(model: SearchModel, page: Page): Observable<SearchModel[]>{
+    return this.http.get<SearchModel[]>(`${this.resourceUrl}/search`);
   }
 
   detail(model: GetDetail) {
@@ -53,5 +58,7 @@ export class StudentService {
       return this.http.post<any>(`${this.resourceUrl}/save`, model);
     }
 
-
+   delete(id: number): Observable<Object>{
+    return this.http.delete(`${this.resourceUrl}/${id}`);
+   }
 }

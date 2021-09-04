@@ -30,11 +30,11 @@ export class StudentDetailComponent implements OnInit {
   saveModel: SaveModel = {} as SaveModel;
   detail = true;
   saveForm = this.formBuilder.group({
-    stdId: [null, [Validators.required]],
+    stdId: [null, [Validators.maxLength(10),Validators.required]],
     stdPrename: [null, [Validators.required]],
     stdName: [null, [Validators.required]],
     stdLastname: [null, [Validators.required]],
-    branch: [null, [Validators.required]],
+    branch: [null],
     idCard: [null, [Validators.required]],
 
   });
@@ -54,8 +54,8 @@ export class StudentDetailComponent implements OnInit {
     }
     this.saveForm.disable();
     this.modal.confirm({
-      nzTitle: '<i>Save?</i>',
-      nzContent: '<b>ต้องการที่จะเพิ่มนักศึกษาคนนี้ใช่หรือไม่</b>',
+      nzTitle: 'บันทึก',
+      nzContent: 'ต้องการที่จะเพิ่มนักศึกษาคนนี้ใช่หรือไม่',
       nzOnOk: () => this.saveConfirm()
     });
     this.detail = true;

@@ -6,13 +6,11 @@ const routes: Routes = [
   {
     path: '',
     component: StudentComponent,
-    data: { title: 'Student', pageId: 'student', backShow: true },
   }
-  , {
+  ,
+  {
     path: 'detail',
     component: StudentDetailComponent,
-
-    data: { title: 'StudentDetail', pageId: 'studentDetail', backShow: true },
   }
 ];
 

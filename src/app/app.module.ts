@@ -79,16 +79,21 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
-import { StudentRoutingModule } from './pages/student/student-routing.module';
 
+
+import { SubjectComponent } from './pages/subject/subject.component';
+import { StudentModule } from './pages/student/student.module';
+import { LoginComponent } from './pages/login/login.component';
 registerLocaleData(th);
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    SubjectComponent,
   ],
   imports: [
-    StudentRoutingModule,
+    StudentModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

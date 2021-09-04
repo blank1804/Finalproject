@@ -26,7 +26,7 @@
             class="ss-form-search-criteria"
           >
             <nz-row nz-row [nzGutter]="24" class="center">
-              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+              <div nz-col nzXs="24" nzSm="24" nzMd="8">
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6" nzRequired>คำนำหน้า</nz-form-label>
                   <nz-form-control nzErrorTip="กรุณาเลือกคำนำหน้าชื่อ">
@@ -51,7 +51,7 @@
                 </nz-form-item>
               </div>
 
-              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+              <div nz-col nzXs="24" nzSm="24" nzMd="8">
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6" nzRequired>ชื่อ</nz-form-label>
                   <nz-form-control nzErrorTip="กรุณากรอกชื่อนักศึกษา">
@@ -64,7 +64,7 @@
                 </nz-form-item>
               </div>
 
-              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+              <div nz-col nzXs="24" nzSm="24" nzMd="8">
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6" nzRequired>นามสกุล</nz-form-label>
                   <nz-form-control nzErrorTip="กรุณากรอกนามสกุลนักศึกษา">
@@ -78,7 +78,7 @@
               </div>
             </nz-row>
             <nz-row nz-row [nzGutter]="24" class="center">
-              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+              <div nz-col nzXs="24" nzSm="24" nzMd="8">
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6" nzRequired>สาขา</nz-form-label>
                   <nz-form-control nzErrorTip="กรุณาเลือกสาขา">
@@ -115,14 +115,18 @@
                         nzLabel="สปาและความงาม"
                         nzValue="สปาและความงาม"
                       ></nz-option>
+                      <nz-option
+                      nzLabel="คอมพิวเตอร์โปรแกรมเมอร์"
+                      nzValue="คอมพิวเตอร์โปรแกรมเมอร์"
+                    ></nz-option>
                     </nz-select>
                   </nz-form-control>
                 </nz-form-item>
               </div>
-              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+              <div nz-col nzXs="24" nzSm="24" nzMd="8">
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6" nzRequired>รหัสนักศึกษา</nz-form-label>
-                  <nz-form-control nzErrorTip="กรุณากรอกรหัสนักสึกษา">
+                  <nz-form-control nzErrorTip="กรุณากรอกรหัสนักศึกษา">
                     <input
                       nz-input
                       formControlName="stdId"
@@ -131,7 +135,7 @@
                   </nz-form-control>
                 </nz-form-item>
               </div>
-              <div nz-col nzXs="24" nzSm="8" nzMd="8">
+              <div nz-col nzXs="24" nzSm="24" nzMd="8">
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6" nzRequired>เลขบัตรประชาชน</nz-form-label>
                   <nz-form-control nzErrorTip="กรุณากรอกเลขบัตรประชาชน">
