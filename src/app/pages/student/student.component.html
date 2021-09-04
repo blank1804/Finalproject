@@ -5,11 +5,13 @@
     [nzBodyStyle]="{ height: '100%' }"
   >
     <div class="d-flex flex-column" style="height: 100%">
+      <div class="toolbar">
       <nz-page-header-extra class="headex">
         <button class="buttontool" nz-button nzType="primary">
           <a routerLink="/student/detail">เพิ่มนักศึกษา</a>
         </button>
       </nz-page-header-extra>
+    </div>
       <div nz-row>
         <div nz-col [nzSpan]="24">
           <h3>รายชื่อนักศึกษา</h3>
@@ -139,7 +141,7 @@
                       #headerTable
                       [nzScroll]="{ y: '340px' }"
                     >
-                      <thead nzSortFn>
+                      <thead nzSort>
                         <tr>
                           <th
                             nzAlign="center"

@@ -136,7 +136,12 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
       nzOnOk: () =>
         new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-        }).catch(() => console.log('Oops errors!'))
+          this.studentService.delete(id).subscribe( data => {
+            console.log(this.studentService.delete(id));
+            this.search(true);
+          })
+        })
+
     });
   }
 }
