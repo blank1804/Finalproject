@@ -5,10 +5,11 @@ import { AbstractPageComponent } from 'src/app/abstract-page.component';
 import { Page } from 'src/shared/interface/interface';
 import { GetDetail, SearchModel, StudentService } from './student.service';
 import { RouterModule } from '@angular/router';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { LoadingService } from 'src/app/core/loading/loading.service';
+import { StudentRoutingModule } from './student-routing.module';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -26,7 +27,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
     private notification: NzNotificationService,
     private studentServicev: StudentService,
     private loadingService: LoadingService,
-
+    private router: Router,
 
   ) {
     super();
@@ -41,7 +42,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
   total = 1;
   listOfData: any = [];
   scollTable: any;
-  id:any;
+  id: any;
   stdId: any;
   stdPrename: any;
   stdName: any;
@@ -50,6 +51,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
   idCard: any;
   confirmModal?: NzModalRef;
 
+  checked: any;
 
   searchForm = this.formBuilder.group({
     stdId: null,
@@ -58,7 +60,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
     stdLastname: null,
     branch: null,
     idCard: null,
-    year:null
+    year: null
   });
 
   ngAfterViewInit(): void {
@@ -79,10 +81,10 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
       this.id = data.student.year;
       this.branch = data.student.branch;
     });
-     this.search(true);
+    this.search(true);
   }
 
-  clear(flag:any): void {
+  clear(flag: any): void {
     if (flag) {
       this.searchForm.reset();
     }
@@ -115,55 +117,35 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
         });
   }
 
-  // cancelreal(inturnShipId) {
-  //   this.modal.confirmWarning('Message.IS00048', '', 'Message.IS00044', 'Message.IS00045').pipe()
-  //     .subscribe((res: any) => {
-  //       if (res) {
-  //         this.getDetail.inturnShipId = inturnShipId;
-  //         this.selectCancelPetition();
-  //       }
-  //     },
-  //       error => {
-  //         this.notification.error('Error', error.error.message);
-  //       });
-  // }
-
-
-  cancel(id:number) {
+  cancel(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'ลบ',
       nzContent: 'ต้องการที่จะลบนักศึกษาคนนี้ออกจากฐานข้อมูลใช่หรือไม่?',
       nzOnOk: () =>
         new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          this.studentService.delete(id).subscribe( data => {
+          this.studentService.delete(id).subscribe(data => {
             console.log(this.studentService.delete(id));
+            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
             this.search(true);
           })
         })
 
     });
   }
+
+
+
+  grade(id: number) {
+    this.router.navigate(['student/grade']);
+    console.log("grade"+id);
+  }
+
+
+  studentDetails(id: number) {
+    this.router.navigate(['student/detail', id]);
+    console.log("studentDetails"+id);
+  }
 }
-// delete(id: number){
-//   this.studentService.delete(id).subscribe( data => {
-//     console.log(data);
-//     this.getStudents();
-//   })
-// }
-
-
-
-  // selectCancelstdId() {
-  //   this.page.sorts = [{ colId: this.sortName || 'rowNum', sort: this.sortValue || 'asc' }];
-  //   this.sv.cancel(this.getDetail).pipe()
-  //     .subscribe(() => {
-
-  //       this.search(true);
-  //     },
-  //      );
-  // }
-
 
 
 

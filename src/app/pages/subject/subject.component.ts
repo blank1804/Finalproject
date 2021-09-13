@@ -113,7 +113,8 @@ export class SubjectComponent implements OnInit {
       },
         error => {
           this.notification.error('Error', error.error.message);
-        });
+        }
+        );
   }
 clear(){
   this.subjectForm.reset();

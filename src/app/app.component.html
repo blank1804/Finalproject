@@ -1,3 +1,6 @@
+<div *ngIf="loginin == 'P'"><app-login></app-login></div>
+
+<div *ngIf="loginin == 'O'">
 <nz-layout class="app-layout">
   <nz-sider class="menu-sidebar"
             nzCollapsible
@@ -6,9 +9,9 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a>
+      <a routerLink="/">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Fucking ProJect</h1>
+        <h1>Grade Manager</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
@@ -17,23 +20,25 @@
         <i nz-icon nzType="user"></i>
         <span><a routerLink="/student">Student</a></span>
       </li>
-      <li nz-submenu nzOpen nzTitle="Subject" nzIcon="book">
+
+      <li nz-submenu [nzOpen]="false" nzTitle="Subject" nzIcon="book">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <span><a routerLink="/subject">Manager</a></span>
           </li>
         </ul>
       </li>
-      <!-- <li nz-menu-item>
+
+      <li nz-menu-item>
         <i nz-icon nzType="logout"></i>
         <span><a
           nzType="primary"
           (click)="logout()"
           class="buttoncenter savebutton">
 
-          Lgout
+          Logout
         </a></span>
-      </li> -->
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>
@@ -55,3 +60,4 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
+</div>

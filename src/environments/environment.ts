@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://studentsgw.herokuapp.com/'
+  apiUrl: 'http://localhost:8080/'
+  //apiUrl: 'http://studentsgw.herokuapp.com/'
 };
 
 /*

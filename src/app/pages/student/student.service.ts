@@ -23,7 +23,7 @@ export interface SaveModel {
 }
 
 export interface GetDetail {
-  stdId: string;
+  id: number;
 
 }
 
@@ -61,4 +61,7 @@ export class StudentService {
   delete(id: number): Observable<Object> {
     return this.http.delete(`${this.resourceUrl}/delete/${id}`);
   }
+
+
+
 }

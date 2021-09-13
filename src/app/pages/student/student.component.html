@@ -139,7 +139,7 @@
                       [nzTotal]="total"
                       [nzLoading]="loadingTable"
                       #headerTable
-                      [nzScroll]="{ y: '340px' }"
+                      [nzScroll]="{ y: '290px' }"
                     >
                       <thead nzSort>
                         <tr>
@@ -147,24 +147,31 @@
                             nzAlign="center"
                             nzShowSort
                             nzColumnKey="id"
-                            nzWidth="250px"
+                            nzWidth="200px"
                           >
                             เลขนักศึกษา
                           </th>
                           <th
                             nzAlign="center"
                             nzColumnKey="stdName"
-                            nzWidth="250px"
+                            nzWidth="200px"
                           >
                             ชื่อ
                           </th>
                           <th
                             nzAlign="center"
                             nzColumnKey="stdLastname"
-                            nzWidth="250px"
+                            nzWidth="200px"
                           >
                             นามสกุล
                           </th>
+                          <th
+                          nzAlign="center"
+                          nzColumnKey="year"
+                          nzWidth="90px"
+                        >
+                          ชั้นปี
+                        </th>
                           <th
                             nzAlign="center"
                             nzColumnKey="branch"
@@ -182,13 +189,14 @@
                             {{ data.stdPrename }} {{ data.stdName }}
                           </td>
                           <td nzAlign="center">{{ data.stdLastname }}</td>
+                          <td nzAlign="center"></td>
                           <td nzAlign="center">{{ data.branch }}</td>
                           <td nzAlign="center">
                             <nz-button-group>
                             <button
                               nz-button
                               nzType="default"
-                              (click)="cancel(data.id)"
+                              (click)="studentDetails(data.id)"
                               nzDanger
                             >
                               <i nz-icon nzType="edit" nzTheme="outline"></i>
@@ -204,7 +212,7 @@
                             <button
                               nz-button
                               nzType="primary"
-                              (click)="cancel(data.id)"
+                              (click)="grade(data.id)"
                             >
                               จัดการเกรด
                             </button>

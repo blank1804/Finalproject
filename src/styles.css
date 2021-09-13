@@ -23,7 +23,13 @@
 
 
 .collapse-header{
-  background-color: #001529d0;
+  background-color: #001529;
   color: white;
 }
+.ant-layout-sider-children{
+  background-color: #001529;
+}
 
+/* .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  background-color: ;
+} */

@@ -5,6 +5,9 @@ import { StudentComponent } from './student.component';
 import { StudentDetailComponent } from './student-detail.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DemoNgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
+
+import { StudentInfoComponent } from '../student-info/student-info.component';
+import { GradeComponent} from '../grade/grade.component'
 @NgModule({
   imports: [StudentRoutingModule,
             DemoNgZorroAntdModule,
@@ -12,7 +15,9 @@ import { DemoNgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
             ReactiveFormsModule,
             CommonModule],
   declarations: [StudentComponent,
-                StudentDetailComponent],
+                StudentDetailComponent,
+                GradeComponent,
+                StudentInfoComponent,],
   exports: [StudentComponent]
 })
 export class StudentModule { }

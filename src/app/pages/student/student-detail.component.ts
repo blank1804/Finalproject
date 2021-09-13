@@ -3,11 +3,12 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { Observable, Observer } from 'rxjs';
 
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { SaveModel, StudentService } from './student.service';
+import { GetDetail, SaveModel, StudentService } from './student.service';
 import { finalize } from 'rxjs/operators';
 import { LoadingService } from 'src/app/core/loading/loading.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -20,15 +21,26 @@ export class StudentDetailComponent implements OnInit {
     private sv: StudentService,
     private loading: LoadingService,
     private modal: NzModalService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private route: ActivatedRoute,
   ) { }
   ngOnInit(): void {
+    this.route.data.subscribe((data) => {
+      this.id = data.id;
+    });
+
+    if (this.id != null) {
+      this.searchDetail(this.id);
+    } else {
+      this.detail = false;
+    }
   }
 
-
+  getDetail: GetDetail = {} as GetDetail;
   isLoadingOne = false;
   saveModel: SaveModel = {} as SaveModel;
   detail = true;
+  id = [];
   saveForm = this.formBuilder.group({
     stdId: [null, [Validators.maxLength(10),Validators.required]],
     stdPrename: [null, [Validators.required]],
@@ -77,10 +89,30 @@ export class StudentDetailComponent implements OnInit {
       }))
       .subscribe((res: any) => {
         if (res.success) {
-
+          this.searchDetail(res.result);
           this.notification.success('สำเร็จ', 'บันทึกสำเร็จแล้ว');
 
         }
+      },
+        error => {
+          this.notification.error('Error', error.error.message);
+        });
+  }
+
+
+
+  searchDetail(id:any): void {
+    this.loading.show();
+    this.getDetail.id = id;
+    console.log(this.getDetail.id);
+    this.sv.detail(this.getDetail).pipe(
+      finalize(() => {
+        this.rebuildDetail();
+        this.loading.hide();
+      }))
+      .subscribe((res: any) => {
+        if (res !== {}) {
+          this.saveForm.patchValue(res);        }
       },
         error => {
           this.notification.error('Error', error.error.message);
@@ -90,4 +122,11 @@ clear(){
   this.saveForm.reset();
 }
 
+rebuildDetail() {
+  this.detail = true;
+  this.saveForm.markAsPristine();
+  this.saveForm.enable();
+  this.saveForm.controls.remark.enable();
+
+}
 }

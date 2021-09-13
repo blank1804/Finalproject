@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { AppComponent } from 'src/app/app.component';
 import { LoadingService } from 'src/app/core/loading/loading.service';
 
 @Component({
@@ -14,10 +17,14 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private loading: LoadingService,
     private notification: NzNotificationService,
+    private ac:AppComponent,
+    private message: NzMessageService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
   validateForm!: FormGroup;
   loginin:any;
-
+  isLoading = false;
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       userName: [null, [Validators.required]],
@@ -38,13 +45,19 @@ export class LoginComponent implements OnInit {
         return;
       }
     }
-    this.loading.show(),10000;
-    this.loginin='O';
-    this.loading.hide();
+    this.isLoading = true;
+    setTimeout(() => {
+      this.ac.loginin='O';
+    }, 1000);
+    this.message.success('คุณได้เข้าสู่ระบบในถานะadmin');
+    this.router.navigate(['']);
+    // this.loading.show();
+
+    // this.loading.hide();
   }
 
   logout() :void{
-    this.loginin = 'P'
+    this.ac.loginin = 'P'
   }
 
 }
