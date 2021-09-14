@@ -21,13 +21,19 @@
         <span><a routerLink="/student">Student</a></span>
       </li>
 
-      <li nz-submenu [nzOpen]="false" nzTitle="Subject" nzIcon="book">
+
+      <li nz-menu-item>
+        <i nz-icon nzType="book"></i>
+        <span><a routerLink="/subject">Subject</a></span>
+      </li>
+
+      <!-- <li nz-submenu [nzOpen]="false" nzTitle="Subject" nzIcon="book">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <span><a routerLink="/subject">Manager</a></span>
           </li>
         </ul>
-      </li>
+      </li> -->
 
       <li nz-menu-item>
         <i nz-icon nzType="logout"></i>

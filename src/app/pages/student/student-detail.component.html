@@ -1,10 +1,14 @@
 <div style="height: 100%">
-  <nz-card
-    class="ss-program-content"
-    style="height: 100%"
-    [nzBodyStyle]="{ height: '100%' }"
-  >
+
     <div class="d-flex flex-column" style="height: 100%">
+
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>
+          <a [routerLink]="['../']">รายชื่อนักศึกษา</a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>เพิ่มนักศึกษา</nz-breadcrumb-item>
+      </nz-breadcrumb>
+
       <div class="toolbar">
       <nz-page-header-extra class="headex">
         <button class="buttontool" nz-button nzType="primary"><a routerLink="/student">รายชื่อนักศึกษา</a></button>
@@ -150,6 +154,43 @@
                 </nz-form-item>
               </div>
             </nz-row>
+
+            <nz-row nz-row [nzGutter]="24" class="center">
+              <div nz-col nzXs="24" nzSm="24" nzMd="8">
+                <nz-form-item>
+                  <nz-form-label [nzSpan]="6" nzRequired>ชั้นปี</nz-form-label>
+                  <nz-form-control nzErrorTip="กรุณาเลือกชั้นปี">
+                    <nz-select
+                      nzAllowClear
+                      nzPlaceHolder="ชั้นปี"
+                      formControlName="year"
+                    >
+                      <nz-option
+                        nzLabel="ปวช.1"
+                        nzValue="ปวช.1"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="ปวช.2"
+                        nzValue="ปวช.2"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="ปวส.1"
+                        nzValue="ปวส.1"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="ปวส.2"
+                        nzValue="ปวส.2"
+                      ></nz-option>
+                      <nz-option
+                        nzLabel="ปวส.3"
+                        nzValue="ปวส.3"
+                      ></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </nz-row>
+
             <div nz-row [nzGutter]="24">
               <div nz-col [nzSpan]="24" nzAlign="center">
                 <button
@@ -169,6 +210,6 @@
       <br />
       <br />
     </div>
-  </nz-card>
+
 </div>
 <ng-template> </ng-template>

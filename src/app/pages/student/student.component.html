@@ -1,10 +1,13 @@
 <div style="height: 100%">
-  <nz-card
-    class="ss-program-content"
-    style="height: 100%"
-    [nzBodyStyle]="{ height: '100%' }"
-  >
+
     <div class="d-flex flex-column" style="height: 100%">
+
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>
+          รายชื่อนักศึกษา
+        </nz-breadcrumb-item>
+      </nz-breadcrumb>
+
       <div class="toolbar">
       <nz-page-header-extra class="headex">
         <button class="buttontool" nz-button nzType="primary">
@@ -189,7 +192,7 @@
                             {{ data.stdPrename }} {{ data.stdName }}
                           </td>
                           <td nzAlign="center">{{ data.stdLastname }}</td>
-                          <td nzAlign="center"></td>
+                          <td nzAlign="center">{{ data.year }}</td>
                           <td nzAlign="center">{{ data.branch }}</td>
                           <td nzAlign="center">
                             <nz-button-group>
@@ -230,6 +233,6 @@
       </nz-collapse>
       <br />
     </div>
-  </nz-card>
+
 </div>
 <ng-template> </ng-template>

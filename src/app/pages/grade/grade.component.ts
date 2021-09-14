@@ -9,12 +9,13 @@ import { SearchModel, StudentInfoService } from '../student-info/student-info.se
 })
 export class GradeComponent implements OnInit {
 
+  id:number | undefined
   constructor(
 
   ) { }
 
   ngOnInit(): void {
-
+console.log(this.id);
   }
 
 }

@@ -12,6 +12,7 @@ export interface SearchModel {
   stdLastname: string,
   branch: string,
   idCard: string,
+  year:string,
 }
 
 @Injectable({ providedIn: 'root' })
@@ -22,7 +23,7 @@ export class StudentInfoService {
   constructor(private http: HttpClient) { }
 
   search(id: number): Observable<SearchModel>{
-    return this.http.get<SearchModel>(`${this.resourceUrl}/students/${75}`);
+    return this.http.get<SearchModel>(`${this.resourceUrl}/students/${id}`);
 
   }
 }

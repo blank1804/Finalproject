@@ -12,6 +12,7 @@ export interface SearchModel extends Page {
   stdLastname: string,
   branch: string,
   idCard: string,
+  yaer:string,
 }
 export interface SaveModel {
   stdId: string,
@@ -20,6 +21,7 @@ export interface SaveModel {
   stdLastname: string,
   branch: string,
   idCard: string,
+  yaer:string,
 }
 
 export interface GetDetail {

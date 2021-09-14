@@ -122,10 +122,12 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
       nzTitle: 'ลบ',
       nzContent: 'ต้องการที่จะลบนักศึกษาคนนี้ออกจากฐานข้อมูลใช่หรือไม่?',
       nzOnOk: () =>
-        new Promise((resolve, reject) => {
+
           this.studentService.delete(id).subscribe(data => {
             console.log(this.studentService.delete(id));
+            new Promise((resolve, reject) => {
             setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+
             this.search(true);
           })
         })
@@ -136,7 +138,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
 
 
   grade(id: number) {
-    this.router.navigate(['student/grade']);
+    this.router.navigate(['student/grade', id]);
     console.log("grade"+id);
   }
 

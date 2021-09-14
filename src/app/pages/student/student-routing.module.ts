@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'detail',
     component: StudentDetailComponent,
   },
-  { path: 'grade', component:GradeComponent}
+  { path: 'grade/:id', component:GradeComponent}
 ];
 
 @NgModule({
