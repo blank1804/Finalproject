@@ -11,24 +11,15 @@ export class GradeComponent implements OnInit {
 
   dataSet = [
     {
-      yearOfgrade: 2562,
-      semesterOfgrade: 1,
-      pointOfyou: 3.99
+      yearOfgrade: "1/2563",
+      gps: 3.78,
+      gpa: 3.78
     },
     {
-      yearOfgrade: 2562,
-      semesterOfgrade: 2,
-      pointOfyou: 3.76
+      yearOfgrade: "2/2563",
+      gps: 3.95,
+      gpa: 3.86
     },
-    {
-      yearOfgrade: 2563,
-      semesterOfgrade: 1,
-      pointOfyou: 4.00
-    },    {
-      yearOfgrade: 2563,
-      semesterOfgrade: 2,
-      pointOfyou: 3.90
-    }
   ];
   id!: number;
   constructor(

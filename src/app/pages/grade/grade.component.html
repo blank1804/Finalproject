@@ -6,20 +6,20 @@
       <nz-breadcrumb-item>
         <a [routerLink]="['../../']">รายชื่อนักศึกษา</a>
       </nz-breadcrumb-item>
-      <nz-breadcrumb-item>จัดการเกรด
+      <nz-breadcrumb-item>จัดการผลการเรียน
       </nz-breadcrumb-item>
     </nz-breadcrumb>
 
     <div class="toolbar">
       <nz-page-header-extra class="headex">
         <button class="buttontool" nz-button nzType="primary">
-          <a routerLink="/student/detail">เพิ่มนักศึกษา</a>
+
         </button>
       </nz-page-header-extra>
     </div>
     <div nz-row>
       <div nz-col [nzSpan]="24">
-        <h3>จัดการเกรดนักศึกษา</h3>
+        <h3>จัดการผลการเรียนนักศึกษา</h3>
       </div>
     </div>
     <br />
@@ -31,7 +31,7 @@
 
         <button class="buttontool" nz-button nzType="primary"  nz-button
         nzType="primary"
-        (click)="addgrade(id)">เพิ่มเกรด
+        (click)="addgrade(id)">เพิ่มผลการเรียน
 
         </button>
 
@@ -49,17 +49,17 @@
                     [nzScroll]="{ y: '290px' }">
                     <thead>
                       <tr>
-                        <th class="head ttcenter" [width]="300">ภาคเรียน</th>
-                        <th class="head ttcenter" [width]="300">ปีการศึกษา</th>
-                        <th class="head ttcenter" [width]="350">เกรดเฉลี่ยที่ได้</th>
+                        <th class="head ttcenter" [width]="300">ภาคเรียน/ปีการศึกษา</th>
+                        <th class="head ttcenter" [width]="300">GPS</th>
+                        <th class="head ttcenter" [width]="350">GPA</th>
                         <th class="head ttcenter">จัดการ</th>
                       </tr>
                     </thead>
                     <tbody class="ttcenter">
                       <tr *ngFor="let data of borderedTable.data">
-                        <td>{{ data.semesterOfgrade }}</td>
                         <td>{{ data.yearOfgrade }}</td>
-                        <td class="yellowtext">{{ data.pointOfyou }}</td>
+                        <td>{{ data.gps }}</td>
+                        <td>{{ data.gpa }}</td>
 
 
                         <td><button nz-button nzType="primary" nzDanger>

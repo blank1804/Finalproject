@@ -9,6 +9,27 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Page } from 'src/shared/interface/interface';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
+
+
+interface DataItem {
+  id: number;
+}
+
+interface ColumnItem {
+  name:string
+  sortOrder: NzTableSortOrder | null;
+  sortFn: NzTableSortFn<DataItem> | null;
+  listOfFilter: NzTableFilterList;
+  filterFn: NzTableFilterFn<DataItem> | null;
+  filterMultiple: boolean;
+  sortDirections: NzTableSortOrder[];
+}
+
+
+
+
+
 
 @Component({
   selector: 'app-subject',
@@ -118,5 +139,37 @@ delete(id: number){
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+listOfColumns: ColumnItem[] = [
+
+  {
+    name: 'id',
+    sortOrder: null,
+    sortFn: (a: DataItem, b: DataItem) => a.id - b.id,
+    sortDirections: ['ascend', 'descend', null],
+    listOfFilter: [],
+    filterFn: null,
+    filterMultiple: true
+  }
+];
 
 }

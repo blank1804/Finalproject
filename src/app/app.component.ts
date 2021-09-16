@@ -9,7 +9,7 @@ import { LoadingService } from './core/loading/loading.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit   {
+export class AppComponent implements OnInit {
 
   isCollapsed = false;
   constructor(
@@ -21,14 +21,17 @@ export class AppComponent implements OnInit   {
   ) { }
   validateForm!: FormGroup;
   // loginin='P';
-  loginin='P';
+  loginin = 'P';
 
   ngOnInit(): void {
   }
 
-  logout() :void{
-    this.loginin = 'P'
-  }
+
+  logout(): void {
+    setTimeout(() => {
+      this.loginin = 'P'
+    }, 500);
+}
 
 }
 

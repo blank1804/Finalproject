@@ -4,7 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Page } from 'src/shared/interface/interface';
 
-
+export interface SubModel {
+  sjId:number
+  subjectId: string,
+  subjectName: string,
+  subjectCredit: number,
+}
 
 export interface subjectSelect {
   subjectId: number,

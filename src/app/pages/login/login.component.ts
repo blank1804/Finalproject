@@ -53,9 +53,11 @@ export class LoginComponent implements OnInit {
     }
     if (this.validateForm.controls.userName.value == 'admin$' && this.validateForm.controls.password.value == 'admin$')
     {
+      this.loading.show();
       this.isLoading = true;
       setTimeout(() => {
         this.ac.loginin = 'O';
+        this.loading.hide();
       }, 1000);
       this.router.navigate(['']);
       setTimeout(() => {
@@ -63,13 +65,15 @@ export class LoginComponent implements OnInit {
       }, 1000);
     } else if (this.validateForm.controls.userName.value == '6313014004' && this.validateForm.controls.password.value == '1720900255074')
     {
+      this.loading.show();
       this.isLoading = true;
       setTimeout(() => {
         this.ac.loginin = 'S';
+        this.loading.hide();
       }, 1000);
       this.router.navigate(['']);
       setTimeout(() => {
-        this.message.success('คุณได้เข้าสู่ระบบในถานะ นักเรียน');
+        this.message.success('คุณได้เข้าสู่ระบบในถานะ นักนักศึกษา');
       }, 1000);
 
     }
@@ -82,7 +86,12 @@ export class LoginComponent implements OnInit {
   }
 
   logout(): void {
+
+    setTimeout(() => {
+      this.loading.show();
+    }, 1000);
     this.ac.loginin = 'P'
+    this.loading.hide();
   }
 
 }

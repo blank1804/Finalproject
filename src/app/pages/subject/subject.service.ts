@@ -19,6 +19,7 @@ export interface SearchModel {
 }
 
 
+
 @Injectable({ providedIn: 'root' })
 export class SubjectService {
   private resourceUrl = `${environment.apiUrl}subject`;

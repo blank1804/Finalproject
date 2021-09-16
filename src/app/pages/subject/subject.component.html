@@ -71,9 +71,14 @@
                     [nzTotal]="total" [nzLoading]="loadingTable" #headerTable [nzScroll]="{ y: '240px' }">
                     <thead (nzSortChange)="sort(id)" nzSortFn>
                       <tr>
-                        <th nzAlign="center" nzShowSort nzColumnKey="id" nzWidth="70px">
-                          Id
-                        </th>
+                        <th
+                        *ngFor="let column of listOfColumns"
+                        [nzSortOrder]="column.sortOrder"
+                        [nzSortFn]="column.sortFn"
+                        [nzSortDirections]="column.sortDirections"
+                        nzWidth="70px" >
+                        {{ column.name }}
+                      </th>
                         <th nzAlign="center" nzColumnKey="subjectId" nzWidth="250px">
                           รหัสวิชา
                         </th>
