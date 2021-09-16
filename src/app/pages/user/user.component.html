@@ -11,29 +11,30 @@
         </div>
         <br />
 
-        <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="ข้อมูลส่วนตัว"
+        <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="ผลการเรียน"
           (nzOnClose)="close()" [nzWidth]="320">
           <ng-container *nzDrawerContent>
-            <p>ชื่อ นายธีรภัทร ปิ่นกระจันทร์</p>
-            <p>สาขา คอมพิวเตอร์โปรแกรมเมอร์</p>
-            <p>GPX:0 GPA:0</p>
-
-            <nz-steps [nzCurrent]="7" nzProgressDot nzDirection="vertical">
-              <nz-step nzTitle="ปวช.1 ภาคเรียนที่ 1" nzDescription="เกรดเฉลี่ย 3.76"></nz-step>
-              <nz-step nzTitle="ปวช.1 ภาคเรียนที่ 2" nzDescription="เกรดเฉลี่ย 3.76"></nz-step>
-              <nz-step nzTitle="ปวช.2 ภาคเรียนที่ 1" nzDescription="เกรดเฉลี่ย 3.45"></nz-step>
-              <nz-step nzTitle="ปวช.2 ภาคเรียนที่ 2" nzDescription="เกรดเฉลี่ย 3.34"></nz-step>
-              <nz-step nzTitle="ปวช.3 ภาคเรียนที่ 1" nzDescription="เกรดเฉลี่ย 3.57"></nz-step>
-              <nz-step nzTitle="ปวช.3 ภาคเรียนที่ 2" nzDescription="เกรดเฉลี่ย 3.98"></nz-step>
-              <nz-step nzTitle="ปวส.1 ภาคเรียนที่ 1" nzDescription="เกรดเฉลี่ย 3.76"></nz-step>
-              <nz-step nzTitle="ปวส.1 ภาคเรียนที่ 2" nzDescription="เกรดเฉลี่ย 3.66"></nz-step>
-              <nz-step nzTitle="ปวส.2 ภาคเรียนที่ 1" nzDescription="กำลังศึกษา"></nz-step>
+            <nz-steps [nzCurrent]="2" nzProgressDot nzDirection="vertical">
+              <nz-step nzTitle="ปวส.1 ภาคเรียนที่ 1" nzDescription="GPS:3.78 | GPA:3.78"></nz-step>
+              <nz-step nzTitle="ปวส.1 ภาคเรียนที่ 2" nzDescription="GPS:3.95 | GPA:3.86"></nz-step>
             </nz-steps>
           </ng-container>
         </nz-drawer>
 
+        <div class="site-page-header-ghost-wrapper">
+          <nz-page-header [nzGhost]="false">
+            <nz-page-header-content>
+              <nz-descriptions nzSize="small" [nzColumn]="3">
+                <nz-descriptions-item nzTitle="ชื่อ" [nzSpan]="1">นายธีรภัทร ปิ่รกระจันทร์ </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="รหัสนักเรียน" [nzSpan]="1"><a>6313014004</a></nz-descriptions-item>
+                <nz-descriptions-item nzTitle="เลขบัตรประชาชน" [nzSpan]="1">1-7209-00255-07-4</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="ระดับชั้น" [nzSpan]="1">ปวส.2/3</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="กลุ่ม" [nzSpan]="2">ประเภทวิชาเทคโนโลยีสารสนเทศและการสื่อสาร(เทคโนโลยีสารสนเทศ)</nz-descriptions-item>
+              </nz-descriptions>
+            </nz-page-header-content>
+          </nz-page-header>
+        </div>
         <ul nz-menu nzMode="horizontal">
-
           <li nz-submenu nzTitle="เลือก ปีการศึกษา" nzIcon="unordered-list">
             <ul>
               <li nz-submenu nzTitle="2563">
@@ -51,23 +52,23 @@
             </ul>
           </li>
           <li nz-menu-item>
-            <a (click)="open()">ข้อมูลส่วนตัว</a>
+            <a (click)="open()">ผลการเรียน</a>
           </li>
           <li nz-menu-item>
             <a style="color: brown;" nz-button
               (click)="logout()"><i nz-icon nzType="logout"></i>Logout</a>
           </li>
         </ul>
-
         <nz-collapse>
           <nz-collapse-panel class="collapse-header" nzHeader="ผลการเรียน" [nzActive]="true">
-            <nz-table #basicTable [nzData]="listOfData" nzTitle="ผลการเรียน ภาคเรียนที่ 1/2563 [23 หน่วยกิจ]">
+            <nz-table #basicTable [nzFrontPagination]="false"
+            [nzShowPagination]="false" [nzData]="listOfData" nzFooter="GPS = 3.95 | GPA = 3.86" nzTitle="ผลการเรียน ภาคเรียนที่ 2/2563 [21 หน่วยกิจ]" [nzPageSize]="50" [nzScroll]="{ y: '290px' }">
               <thead>
                 <tr>
-                  <th>รหัสวิชา</th>
-                  <th>ชื่อวิชา</th>
-                  <th>หน่วยกิจ</th>
-                  <th>ผลการเรียน</th>
+                  <th  style="background-color: #DADADA;">รหัสวิชา</th>
+                  <th  style="background-color: #DADADA;">ชื่อวิชา</th>
+                  <th  style="background-color: #DADADA;">หน่วยกิจ</th>
+                  <th  style="background-color: #DADADA;">ผลการเรียน</th>
                 </tr>
               </thead>
               <tbody>
@@ -79,10 +80,6 @@
                 </tr>
               </tbody>
             </nz-table>
-
-
-
-
           </nz-collapse-panel>
         </nz-collapse>
 

@@ -201,7 +201,14 @@
                           <td nzAlign="center">{{ data.year }}</td>
                           <td nzAlign="center">{{ data.branch }}</td>
                           <td nzAlign="center">
+                            <button
+                            nz-button
+                            nzType="primary"
+                            (click)="grade(data.id)"
 
+                          >
+                            ผลการเรียน
+                          </button>&nbsp;
                             <button
                               nz-button
                               nzType="primary"
@@ -217,15 +224,8 @@
                               nzDanger
                             >
                               <i nz-icon nzType="delete"></i>
-                            </button>&nbsp;
-                            <button
-                              nz-button
-                              nzType="primary"
-                              (click)="grade(data.id)"
-
-                            >
-                              ผลการเรียน
                             </button>
+
 
                           </td>
                         </tr>

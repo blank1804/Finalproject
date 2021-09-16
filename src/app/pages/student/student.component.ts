@@ -39,6 +39,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
     private studentServicev: StudentService,
     private loadingService: LoadingService,
     private router: Router,
+    private loading:LoadingService
 
   ) {
     super();
@@ -136,13 +137,12 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
       nzTitle: 'ลบ',
       nzContent: 'ต้องการที่จะลบนักศึกษาคนนี้ออกจากฐานข้อมูลใช่หรือไม่?',
       nzOnOk: () =>
-
           this.studentService.delete(id).subscribe(data => {
             console.log(this.studentService.delete(id));
             new Promise((resolve, reject) => {
             setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-
             this.search(true);
+            this.notification.success('ลบเสร็จสิ้น','ทำกการลบข้อนักมูลศึกษาเสร็จสิ้น')
           })
         })
 
@@ -150,15 +150,14 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
   }
 
 
-
   grade(id: number) {
-    this.router.navigate(['student/grade', id]);
+    this.router.navigate(['student/grade', id],{skipLocationChange: true});
     console.log("grade"+id);
   }
 
 
   studentDetails(id: number) {
-    this.router.navigate(['student/detail', id]);
+    this.router.navigate(['student/detail', id],{skipLocationChange: true});
     console.log("studentDetails"+id);
   }
 

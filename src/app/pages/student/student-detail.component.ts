@@ -48,7 +48,7 @@ export class StudentDetailComponent implements OnInit {
     stdName: [null, [Validators.required]],
     stdLastname: [null, [Validators.required]],
     branch: [null],
-    idCard: [null, [Validators.required]],
+    idCard: [null, [Validators.maxLength(13),Validators.required]],
     year: [null, [Validators.required]],
   });
 

@@ -135,6 +135,7 @@ delete(id: number){
   this.subjectService.deleteStudent(id).subscribe( data => {
     console.log(id);
     this.search(true);
+    this.notification.success('ลบเสร็จสิ้น','ทำกการลบข้อนักมูลวิชาเสร็จสิ้น')
   })
 
 }
