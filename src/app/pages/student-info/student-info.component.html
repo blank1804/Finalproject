@@ -1,0 +1,72 @@
+<div nz-row class="ss-program-content">
+  <div nz-col nzSpan="24">
+      <nz-collapse class="card">
+          <nz-collapse-panel class="collapse-header" nzHeader="ข้อมูลนักศึกษา"
+              [nzActive]="true">
+              <div nz-row >
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+                     คำนำหน้า
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      {{searchModel.stdPrename}}
+                  </div>
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+                      ชื่อ
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      {{searchModel.stdName}}
+                  </div>
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+                      นามสกุล
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      {{searchModel.stdLastname}}
+                  </div>
+              </div>
+              <div nz-row >
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+                     รหัสนักศึกษา
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      {{searchModel.stdId}}
+                  </div>
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+                      ชั้นปี
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      {{searchModel.year}}
+                  </div>
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+                      สาขา
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      {{searchModel.branch}}
+                  </div>
+              </div>
+
+
+              <div nz-row >
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+                    เลขบัตรประชาชน
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      {{searchModel.idCard}}
+                  </div>
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      <!-- {{data.location}} -->
+                  </div>
+                  <div nz-col nzXs="8" nzSm="8" nzMd="3" class="gray-block">
+
+                  </div>
+                  <div nz-col nzXs="16" nzSm="16" nzMd="5" class="white-block">
+                      <!-- <label *ngIf="data.birthday != '-'">{{data.birthday}}</label>
+                      <label *ngIf="data.birthday == '-'">{{data.birthday}}</label> -->
+                  </div>
+              </div>
+          </nz-collapse-panel>
+      </nz-collapse>
+  </div>
+</div>

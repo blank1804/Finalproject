@@ -1,51 +1,72 @@
-<nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
-    <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Fucking ProJect</h1>
-      </a>
-    </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Student" nzIcon="user">
+<div *ngIf="loginin == 'P'">
+  <app-login></app-login>
+</div>
+
+<div *ngIf="loginin == 'O'">
+  <nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null">
+      <div class="sidebar-logo">
+        <a routerLink="/">
+          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+          <h1>Grade Manager</h1>
+        </a>
+      </div>
+      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+
+        <li nz-menu-item>
+          <i nz-icon nzType="user"></i>
+          <span><a routerLink="/student">Student</a></span>
+        </li>
+
+
+        <li nz-menu-item>
+          <i nz-icon nzType="book"></i>
+          <span><a routerLink="/subject">Subject</a></span>
+        </li>
+
+        <!-- <li nz-submenu [nzOpen]="false" nzTitle="Subject" nzIcon="book">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/student">Student</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/student/detail">Add</a>
+            <span><a routerLink="/subject">Manager</a></span>
           </li>
         </ul>
+      </li> -->
+      <li nz-menu-item>
+        <i nz-icon nzType="logout"></i>
+          <span><a nzType="primary" (click)="logout()" class="buttoncenter savebutton">
+
+              Logout
+            </a></span>
       </li>
-      <li nz-submenu nzOpen nzTitle="Subject" nzIcon="book">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nz-sider>
-  <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
-        </span>
-      </div>
-    </nz-header>
-    <nz-content>
-      <div class="inner-content">
-        <router-outlet></router-outlet>
-      </div>
-    </nz-content>
+
+        <!-- <li nz-menu-item>
+          <button nz-button nzType="primary"></button><i nz-icon nzType="logout"></i>
+          <span><a nzType="primary" (click)="logout()" class="buttoncenter savebutton">
+
+              Logout
+            </a></span>
+        </li> -->
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-header>
+        <div class="app-header">
+          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+
+          </span>
+        </div>
+      </nz-header>
+      <nz-content>
+        <div class="inner-content">
+          <router-outlet></router-outlet>
+        </div>
+      </nz-content>
+    </nz-layout>
   </nz-layout>
-</nz-layout>
+</div>
+
+
+
+<app-user *ngIf="loginin == 'S'"></app-user>

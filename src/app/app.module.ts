@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { th_TH } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import th from '@angular/common/locales/th';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
@@ -81,16 +80,29 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
 
+
+import { SubjectComponent } from './pages/subject/subject.component';
+import { SubjectDetailComponent } from './pages/subject/subject-detail.component';
+import { StudentModule } from './pages/student/student.module';
+import { LoginComponent } from './pages/login/login.component';
+import { UserComponent } from './pages/user/user.component'
+
 registerLocaleData(th);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    SubjectComponent,
+    SubjectDetailComponent,
+    UserComponent,
   ],
   imports: [
+    StudentModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     IconsProviderModule,
