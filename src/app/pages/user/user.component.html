@@ -1,0 +1,87 @@
+<nz-layout>
+
+
+  <nz-header>
+
+  </nz-header>
+  <nz-card class="ss-program-content" style="height: 100%" [nzBodyStyle]="{ height: '100%' }">
+    <nz-content>
+
+      <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="ข้อมูลส่วนตัว"
+        (nzOnClose)="close()" [nzWidth]="520">
+        <ng-container *nzDrawerContent>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </ng-container>
+      </nz-drawer>
+
+      <ul nz-menu nzMode="horizontal">
+
+        <li nz-submenu nzTitle="เลือก ปีการศึกษา" nzIcon="unordered-list">
+          <ul>
+            <li nz-submenu nzTitle="2560">
+              <ul>
+                <li nz-menu-item>ปวช.1/1</li>
+                <li nz-menu-item>ปวช.1/2</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="2561">
+              <ul>
+                <li nz-menu-item>ปวช.2/1</li>
+                <li nz-menu-item>ปวช.2/2</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="2562">
+              <ul>
+                <li nz-menu-item>ปวช.3/1</li>
+                <li nz-menu-item>ปวช.3/2</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="2563">
+              <ul>
+                <li nz-menu-item>ปวส.1/1</li>
+                <li nz-menu-item>ปวส.1/2</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item>
+          <button nz-button nzType="primary" (click)="open()"><i nz-icon nzType="logout"></i>ข้อมูลส่วนตัว</button>
+        </li>
+        <li nz-menu-item>
+          <button style="background-color: rgb(109, 0, 0); border-color: rgb(138, 0, 0);" nz-button nzType="primary"
+            (click)="logout()"><i nz-icon nzType="logout"></i>Logout</button>
+        </li>
+      </ul>
+
+      <nz-collapse>
+        <nz-collapse-panel class="collapse-header" nzHeader="ผลการเรียน" [nzActive]="true">
+          <nz-table #basicTable [nzData]="listOfData">
+            <thead>
+              <tr>
+                <th>รหัสวิชา</th>
+                <th>ชื่อวิชา</th>
+                <th>เกรดที่ได้</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.id }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.point }}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+
+
+
+
+        </nz-collapse-panel>
+      </nz-collapse>
+
+
+
+    </nz-content>
+  </nz-card>
+</nz-layout>
+<nz-footer> Grade Manager by Just coding.</nz-footer>

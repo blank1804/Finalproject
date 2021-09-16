@@ -12,7 +12,7 @@ export interface SearchModel extends Page {
   stdLastname: string,
   branch: string,
   idCard: string,
-  yaer:string,
+  year:string,
 }
 export interface SaveModel {
   stdId: string,
@@ -21,7 +21,7 @@ export interface SaveModel {
   stdLastname: string,
   branch: string,
   idCard: string,
-  yaer:string,
+  year:string,
 }
 
 export interface GetDetail {
@@ -63,7 +63,5 @@ export class StudentService {
   delete(id: number): Observable<Object> {
     return this.http.delete(`${this.resourceUrl}/delete/${id}`);
   }
-
-
 
 }

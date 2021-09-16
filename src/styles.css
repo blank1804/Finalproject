@@ -33,3 +33,6 @@
 /* .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
   background-color: ;
 } */
+.ant-table-small .ant-table-thead > tr > th {
+background-color: #dadada;
+}

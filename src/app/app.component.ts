@@ -21,7 +21,7 @@ export class AppComponent implements OnInit   {
   ) { }
   validateForm!: FormGroup;
   // loginin='P';
-  loginin='O';
+  loginin='P';
 
   ngOnInit(): void {
   }

@@ -25,15 +25,16 @@ export class StudentDetailComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
   ngOnInit(): void {
-    this.route.data.subscribe((data) => {
-      this.id = data.id;
-    });
+    // this.route.data.subscribe((data) => {
+    //   this.id = data.identify.id;
+    //   console.log("studentDetail"+this.id);
+    // });
 
-    if (this.id != null) {
-      this.searchDetail(this.id);
-    } else {
-      this.detail = false;
-    }
+    // if (this.id != null) {
+    //   this.searchDetail(this.id);
+    // } else {
+    //   this.detail = false;
+    // }
   }
 
   getDetail: GetDetail = {} as GetDetail;
@@ -102,7 +103,7 @@ export class StudentDetailComponent implements OnInit {
 
 
   searchDetail(id:any): void {
-    this.loading.show();
+    // this.loading.show();
     this.getDetail.id = id;
     console.log(this.getDetail.id);
     this.sv.detail(this.getDetail).pipe(

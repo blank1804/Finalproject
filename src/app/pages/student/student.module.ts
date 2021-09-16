@@ -8,16 +8,19 @@ import { DemoNgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 
 import { StudentInfoComponent } from '../student-info/student-info.component';
 import { GradeComponent} from '../grade/grade.component'
+import { SearchfilterPipe } from '../../searchfilter.pipe';
+import { GradeDetailComponent } from '../grade/grade-detail.component';
 @NgModule({
   imports: [StudentRoutingModule,
             DemoNgZorroAntdModule,
             FormsModule,
             ReactiveFormsModule,
-            CommonModule],
+            CommonModule,],
   declarations: [StudentComponent,
                 StudentDetailComponent,
-                GradeComponent,
-                StudentInfoComponent,],
+                GradeComponent,GradeDetailComponent,
+                StudentInfoComponent,SearchfilterPipe
+              ],
   exports: [StudentComponent]
 })
 export class StudentModule { }

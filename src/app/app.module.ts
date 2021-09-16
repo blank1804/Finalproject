@@ -82,8 +82,11 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
 
 
 import { SubjectComponent } from './pages/subject/subject.component';
+import { SubjectDetailComponent } from './pages/subject/subject-detail.component';
 import { StudentModule } from './pages/student/student.module';
 import { LoginComponent } from './pages/login/login.component';
+import { UserComponent } from './pages/user/user.component'
+
 registerLocaleData(th);
 
 @NgModule({
@@ -91,6 +94,8 @@ registerLocaleData(th);
     AppComponent,
     LoginComponent,
     SubjectComponent,
+    SubjectDetailComponent,
+    UserComponent,
   ],
   imports: [
     StudentModule,

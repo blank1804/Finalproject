@@ -1,0 +1,36 @@
+nz-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(44, 44, 44);
+  color: white;
+  text-align: center;
+}
+
+
+
+html,
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background-image: url();
+}
+
+.header {
+  padding: 8px;
+  text-align: left;
+  background: #686868;
+}
+
+
+nz-footer {
+  text-align: center;
+}
+.inner-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+

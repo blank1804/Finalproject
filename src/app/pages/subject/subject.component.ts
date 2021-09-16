@@ -68,54 +68,6 @@ export class SubjectComponent implements OnInit {
   });
 
 
-
-  save(): void {
-    let warning: number = 0;
-    if (this.subjectForm.invalid) {
-      for (const i in this.subjectForm.controls) {
-        this.subjectForm.controls[i].markAsDirty();
-        this.subjectForm.controls[i].updateValueAndValidity();
-      }
-      this.notification.error('แจ้งเตือน', 'กรุณากรอกข้อมูลให้ครบถ้วน');
-      warning++;
-    }
-    if (warning > 0) {
-      return;
-    }
-    this.subjectForm.disable();
-    this.modal.confirm({
-      nzTitle: 'บันทึก',
-      nzContent: 'ต้องการที่จะเพิ่มนักศึกษาคนนี้ใช่หรือไม่',
-      nzOnOk: () => this.saveConfirm()
-    });
-    this.detail = true;
-  }
-  saveConfirm() {
-    this.isLoadingOne = true;
-    // this.loading.show();
-    Object.assign(this.subjectModel, this.subjectForm.value);
-    this.sv.save(this.subjectModel).pipe(
-      finalize(() => {
-        // this.loading.hide();
-        this.notification.success('สำเร็จ', 'บันทึกสำเร็จแล้ว');
-        this.subjectForm.enable();
-        this.subjectForm.reset();
-        this.search(true);
-        this.isLoadingOne = false;
-
-      }))
-      .subscribe((res: any) => {
-        if (res.success) {
-
-          this.notification.success('สำเร็จ', 'บันทึกสำเร็จแล้ว');
-
-        }
-      },
-        error => {
-          this.notification.error('Error', error.error.message);
-        }
-        );
-  }
 clear(){
   this.subjectForm.reset();
 }

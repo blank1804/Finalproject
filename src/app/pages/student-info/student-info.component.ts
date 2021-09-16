@@ -21,10 +21,8 @@ export class StudentInfoComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    console.log("oninit info"+this.id);
     this.studentinfoService.search(this.id).subscribe( data => {
       this.searchModel = data;
-      console.log(this.searchModel);
     });
   }
 }
