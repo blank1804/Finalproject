@@ -55,14 +55,19 @@
             <a (click)="open()">ผลการเรียน</a>
           </li>
           <li nz-menu-item>
+            <a style="color: rgb(8, 76, 202);" nz-button
+             ><i nz-icon nzType="printer"></i>print</a>
+          </li>
+          <li nz-menu-item>
             <a style="color: brown;" nz-button
               (click)="logout()"><i nz-icon nzType="logout"></i>Logout</a>
           </li>
+
         </ul>
         <nz-collapse>
           <nz-collapse-panel class="collapse-header" nzHeader="ผลการเรียน" [nzActive]="true">
             <nz-table #basicTable [nzFrontPagination]="false"
-            [nzShowPagination]="false" [nzData]="listOfData" nzFooter="GPS = 3.95 | GPA = 3.86" nzTitle="ผลการเรียน ภาคเรียนที่ 2/2563 [21 หน่วยกิจ]" [nzPageSize]="50" [nzScroll]="{ y: '290px' }">
+            [nzShowPagination]="false" [nzData]="listOfData" nzFooter="GPS = 3.95 | GPA = 3.86" nzTitle="ผลการเรียน ภาคเรียนที่ 2/2563 [21 หน่วยกิจ]" [nzPageSize]="50" [nzScroll]="{ y: '250px' }">
               <thead>
                 <tr>
                   <th  style="background-color: #DADADA;">รหัสวิชา</th>

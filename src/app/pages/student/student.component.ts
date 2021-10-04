@@ -172,7 +172,6 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
 
 
 
-
   listOfColumns: ColumnItem[] = [
     {
       name: 'ชั้นปี',
