@@ -7,9 +7,9 @@ import { GradeDetailComponent } from '../grade/grade-detail.component';
 const routes: Routes = [
   { path: '', component: StudentComponent, },
   { path: 'detail', component: StudentDetailComponent, },
-  { path: 'detail/:id', component: StudentDetailComponent, },
-  { path: 'grade/:id', component: GradeComponent },
-  { path: 'gradedetail/:id', component: GradeDetailComponent }
+  { path: 'grade', component: GradeComponent,}
+  // { path: 'detail/:id', component: StudentDetailComponent, },
+  //{ path: 'grade/:id', component: GradeComponent },
 ];
 
 @NgModule({

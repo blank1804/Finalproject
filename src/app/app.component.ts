@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { LoadingService } from './core/loading/loading.service';
 
@@ -18,20 +19,23 @@ export class AppComponent implements OnInit {
     private notification: NzNotificationService,
     private router: Router,
     private route: ActivatedRoute,
+    private modal: NzModalService
   ) { }
   validateForm!: FormGroup;
   // loginin='P';
-  loginin = 'P';
+  loginin = 'O';
 
   ngOnInit(): void {
   }
 
 
   logout(): void {
-    setTimeout(() => {
-      this.loginin = 'P'
-    }, 500);
-}
+    this.modal.confirm({
+      nzTitle: '<i>Do you Want to delete these items?</i>',
+      nzContent: '<b>Some descriptions</b>',
+      nzOnOk: () => this.loginin = 'P'
+    });
+  }
 
 }
 

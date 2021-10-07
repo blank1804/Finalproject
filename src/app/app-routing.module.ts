@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EmptyComponent } from './empty/empty.component';
 import { SubjectDetailComponent } from './pages/subject/subject-detail.component';
 import { SubjectComponent } from './pages/subject/subject.component';
 import { UserComponent } from './pages/user/user.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'subject/subjectdetail', component:SubjectDetailComponent},
 
   { path: 'user', component:UserComponent},
+  { path: '**', component:EmptyComponent},
 ];
 
 @NgModule({

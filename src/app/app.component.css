@@ -22,10 +22,11 @@
   font-size: 20px;
   cursor: pointer;
   transition: all .3s,padding 0s;
+
 }
 
 .trigger:hover {
-  color: #1890ff;
+  color: #D83F87;
 }
 
 .sidebar-logo {
@@ -34,7 +35,7 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background: #001529;
+  background-color: #2A1B3D;
   transition: all .3s;
 }
 

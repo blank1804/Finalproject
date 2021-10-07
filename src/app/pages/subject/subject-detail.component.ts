@@ -4,16 +4,18 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { finalize } from 'rxjs/operators';
+import { AbstractPageComponent } from 'src/app/abstract-page.component';
 import { LoadingService } from 'src/app/core/loading/loading.service';
+import { PageStateService } from 'src/app/service/page-state.service';
 import { Page } from 'src/shared/interface/interface';
-import { SearchModel, SubjectModel, SubjectService } from './subject.service';
+import { SearchModel, SaveModel, SubjectService, GetDetail } from './subject.service';
 
 @Component({
   selector: 'app-subject-detail',
   templateUrl: './subject-detail.component.html',
   styleUrls: ['./subject-detail.component.css']
 })
-export class SubjectDetailComponent implements OnInit {
+export class SubjectDetailComponent extends AbstractPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,16 +25,16 @@ export class SubjectDetailComponent implements OnInit {
     private notification: NzNotificationService,
     private subjectService: SubjectService,
     private nzMessageService: NzMessageService,
-  ) { }
+    private pageState: PageStateService,
+  ) {super(); }
 
-  ngOnInit(): void {
-  }
-  subjectForm = this.formBuilder.group({
+  saveForm = this.formBuilder.group({
     subjectId: [null, [Validators.maxLength(10),Validators.required]],
     subjectName: [null, [Validators.required]],
-    subjectCredit: [null, [Validators.required]],
+    subjectCredit: [null, [Validators.max(9), Validators.required]],
   });
-
+  saveModel: SaveModel = {} as SaveModel;
+  getDetail: GetDetail = {} as GetDetail;
   isLoadingOne = false;
   detail = true;
   sortName: string | null = null;
@@ -44,19 +46,63 @@ export class SubjectDetailComponent implements OnInit {
   listOfData: any = [];
   searchModel: SearchModel = {} as SearchModel;
   scollTable: any;
-  subjectModel: SubjectModel = {} as SubjectModel;
-  subjectId:any;
-  id:any;
-  subjectName:any;
-  subjectCredit:any;
-  tabs = [1, 2, 3];
+  SaveModel: SaveModel = {} as SaveModel;
+  label:any = [];
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.scollTable = super.scollTable();
+    }, 10);
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+    // this.route.data.subscribe((data) => {
+    //   this.id = data.id;
+    //   console.log(this.id);
+    // });
+    if (this.pageState.getParams() != null && this.pageState.getParams().sId != null) {
+      this.searchDetail(this.pageState.getParams().sId);
+      this.label = ["แก้ไขวิชา","แก้ไขวิชา","แก้ไข","แก้ไข"];
+    } else {
+      this.detail = false;
+      this.label = ["เพิ่มวิชา","เพิ่มวิชา","เพิ่ม","เพิ่ม"];
+    }
+  }
+
+  searchDetail(sId: number): void {
+    this.getDetail.sId = sId;
+    this.saveModel.sId = sId;
+    this.sv.detail(this.getDetail).pipe(
+      finalize(() => {
+        this.rebuildDetail();
+      }))
+      .subscribe((res: any) => {
+        if (res !== {}) {
+          this.saveForm.patchValue(res);
+        }
+      },
+        error => {
+          this.notification.error('Error', error.error.message);
+        });
+  }
+
+  rebuildDetail() {
+    this.detail = true;
+    this.saveForm.markAsPristine();
+    this.saveForm.enable();
+  }
 
   save(): void {
     let warning: number = 0;
-    if (this.subjectForm.invalid) {
-      for (const i in this.subjectForm.controls) {
-        this.subjectForm.controls[i].markAsDirty();
-        this.subjectForm.controls[i].updateValueAndValidity();
+    if (this.saveForm.invalid) {
+      for (const i in this.saveForm.controls) {
+        this.saveForm.controls[i].markAsDirty();
+        this.saveForm.controls[i].updateValueAndValidity();
       }
       this.notification.error('แจ้งเตือน', 'กรุณากรอกข้อมูลให้ครบถ้วน');
       warning++;
@@ -64,7 +110,7 @@ export class SubjectDetailComponent implements OnInit {
     if (warning > 0) {
       return;
     }
-    this.subjectForm.disable();
+    this.saveForm.disable();
     this.modal.confirm({
       nzTitle: 'บันทึก',
       nzContent: 'ต้องการที่จะเพิ่มนักศึกษาคนนี้ใช่หรือไม่',
@@ -72,29 +118,24 @@ export class SubjectDetailComponent implements OnInit {
     });
     this.detail = true;
   }
-  saveConfirm() {
-    this.isLoadingOne = true;
-    // this.loading.show();
-    Object.assign(this.subjectModel, this.subjectForm.value);
-    this.sv.save(this.subjectModel).pipe(
-      finalize(() => {
-        // this.loading.hide();
-        this.notification.success('สำเร็จ', 'บันทึกสำเร็จแล้ว');
-        this.subjectForm.enable();
-        this.subjectForm.reset();
-        this.isLoadingOne = false;
 
+  saveConfirm() {
+    Object.assign(this.saveModel, this.saveForm.getRawValue());
+    this.sv.save(this.saveModel).pipe(
+      finalize(() => {
       }))
       .subscribe((res: any) => {
         if (res.success) {
-
+          this.searchDetail(res.result);
           this.notification.success('สำเร็จ', 'บันทึกสำเร็จแล้ว');
-
         }
       },
         error => {
           this.notification.error('Error', error.error.message);
-        }
-        );
+        });
+  }
+
+  clear(){
+    this.saveForm.reset();
   }
 }

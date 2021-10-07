@@ -6,33 +6,33 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 export interface SearchModel extends Page {
   id: number,
-  stdId: string,
-  stdPrename: string,
-  stdName: string,
-  stdLastname: string,
-  branch: string,
-  idCard: string,
-  year:string,
+  studentId: string,
+  preName: string,
+  firstName: string,
+  lastName: string,
+  fieldOfStudy: string,
+  classYear: string,
+  idCard:string,
 }
 export interface SaveModel {
-  stdId: string,
-  stdPrename: string,
-  stdName: string,
-  stdLastname: string,
-  branch: string,
-  idCard: string,
-  year:string,
+  id: number,
+  studentId: string,
+  preName: string,
+  firstName: string,
+  lastName: string,
+  fieldOfStudy: string,
+  classYear: string,
+  idCard:string,
 }
 
 export interface GetDetail {
   id: number;
-
 }
 
 @Injectable({ providedIn: 'root' })
 export class StudentService {
 
-  private resourceUrl = `${environment.apiUrl}blank`;
+  private resourceUrl = `${environment.apiUrl}student`;
   // private UrlDdl = `${environment.apiUrl}core/combobox`;
 
   constructor(private http: HttpClient) { }
@@ -44,8 +44,12 @@ export class StudentService {
   //   return this.http.post<any>(`${this.resourceUrl}/search`, model);
   // }
 
-  search(model: SearchModel, page: Page): Observable<SearchModel[]> {
-    return this.http.get<SearchModel[]>(`${this.resourceUrl}/search`);
+  search(model: SearchModel, page: Page) {
+    console.log(model);
+    model.pageNumber = page.pageNumber;
+    model.pageSize = page.pageSize;
+    model.sorts = page.sorts;
+    return this.http.post<any>(`${this.resourceUrl}/search`, model);
   }
 
   detail(model: GetDetail) {
@@ -55,13 +59,18 @@ export class StudentService {
   cancel(model: GetDetail) {
     return this.http.post<any>(`${this.resourceUrl}/cancel`, model);
   }
+
   save(model: SaveModel) {
-    console.log(model)
-    return this.http.post<any>(`${this.resourceUrl}/save`, model);
-  }
+    console.log(model.id);
+    if (model.id) {
+      console.log(1);
+      return this.http.post<any>(`${this.resourceUrl}/update`, model);
+    } else {
+      return this.http.post<any>(`${this.resourceUrl}/save`, model);
+    }
 
-  delete(id: number): Observable<Object> {
-    return this.http.delete(`${this.resourceUrl}/delete/${id}`);
   }
-
+    // save(model: SaveModel) {
+    //   return this.http.post<any>(`${this.resourceUrl}/save`, model);
+    // }
 }

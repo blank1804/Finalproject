@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { Page } from 'src/shared/interface/interface';
-import { SearchModel, StudentInfoService } from '../student-info/student-info.service';
+import { InfoModel, SearchModel, StudentInfoService } from '../student-info/student-info.service';
 import { GradeService, subjectSelect } from './grade.service';
 import { SubjectService } from '../subject/subject.service';
 import { SubModel } from './grade.service';
@@ -19,7 +19,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 export class GradeDetailComponent implements OnInit {
   id: any;
-  searchModel: SearchModel = {} as SearchModel;
+  searchModel: InfoModel = {} as InfoModel;
   i = 0;
   editId: string | null = null;
   listOfData: subjectSelect = {} as subjectSelect;
@@ -64,29 +64,29 @@ export class GradeDetailComponent implements OnInit {
    { }
 
   ngOnInit(): void {
-    this.search(true);
-    console.log(this.listOfOption);
-    this.id = this.route.snapshot.params['id'];
-    this.studentinfoService.search(this.id).subscribe( data => {
-      this.searchModel = data;
-    });
+    // this.search(true);
+    // console.log(this.listOfOption);
+    // this.id = this.route.snapshot.params['id'];
+    // this.studentinfoService.search(this.id).subscribe( data => {
+    //   this.searchModel = data;
+    // });
   }
 
-  search(flag: any): void {
-    Object.assign(this.searchModel, this.keyword);
-    this.subjectService.search(this.subModel, this.page).pipe(
-      finalize(() => {
-      }))
-      .subscribe((res: any) => {
-        this.loadingTable = false;
-        this.total = res.total;
-        this.listOfOption = res;
-        console.log(this.listOfOption);
-      },
-        error => {
+  // search(flag: any): void {
+  //   Object.assign(this.searchModel, this.keyword);
+  //   this.subjectService.search(this.searchModel, this.page).pipe(
+  //     finalize(() => {
+  //     }))
+  //     .subscribe((res: any) => {
+  //       this.loadingTable = false;
+  //       this.total = res.total;
+  //       this.listOfOption = res;
+  //       console.log(this.listOfOption);
+  //     },
+  //       error => {
 
-        });
-  }
+  //       });
+  // }
 
 
 

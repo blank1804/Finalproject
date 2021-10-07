@@ -11,6 +11,7 @@ import { LoadingService } from 'src/app/core/loading/loading.service';
 import { StudentRoutingModule } from './student-routing.module';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
+import { PageStateService } from 'src/app/service/page-state.service';
 
 interface ColumnItem {
   name: string;
@@ -35,6 +36,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
     private studentService: StudentService,
     private route: ActivatedRoute,
     private modal: NzModalService,
+    private pageState: PageStateService,
     private notification: NzNotificationService,
     private studentServicev: StudentService,
     private loadingService: LoadingService,
@@ -56,26 +58,24 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
   listOfData: any = [];
   scollTable: any;
   id: any;
-  stdId: any;
-  stdPrename: any;
-  stdName: any;
-  stdLastname: any;
-  branch: any;
+  studentId: any;
+  preName: any;
+  firstName: any;
+  lastName: any;
+  fieldOfStudy:any;
   idCard: any;
+  classYear: any;
   confirmModal?: NzModalRef;
-
-
-
   checked: any;
 
   searchForm = this.formBuilder.group({
-    stdId: null,
-    stdPrename: null,
-    stdName: null,
-    stdLastname: null,
-    branch: null,
+    studentId: null,
+    preName: null,
+    firstName: null,
+    lastName: null,
+    fieldOfStudy: null,
     idCard: null,
-    year: null
+    classYear: null
   });
 
   ngAfterViewInit(): void {
@@ -93,7 +93,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     this.route.data.subscribe((data) => {
-      // this.id = data.student.year;
+      // this.year = data.student.year;
       // this.branch = data.student.branch;
     });
     this.search(true);
@@ -102,81 +102,109 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
   clear(flag: any): void {
     if (flag) {
       this.searchForm.reset();
+      this.search(true);
     }
-    this.listOfData = [];
-    this.searchForm.controls.id.setValue(this.listOfData);
-    this.searchForm.controls.branch.setValue(this.listOfData);
-    this.search(true);
   }
 
 
-  search(flag: any): void {
+  search(flag: boolean): void {
     if (flag) {
       this.keyword = this.searchForm.value;
       this.page = new Page();
     }
     this.loadingTable = true;
     Object.assign(this.searchModel, this.keyword);
-    this.page.sorts = [{ colId: this.sortName || 'id', sort: this.sortValue || 'asc' }];
+    this.page.sorts = [{ colId: this.sortName || 'rowNum', sort: this.sortValue || 'asc' }];
     this.studentService.search(this.searchModel, this.page).pipe(
       finalize(() => {
       }))
       .subscribe((res: any) => {
         this.loadingTable = false;
         this.total = res.total;
-        this.listOfData = res;
-        console.log(this.listOfData);
+        this.listOfData = res.records;
       },
         error => {
           this.notification.error('Error', error.error.message);
         });
   }
 
-  cancel(id: number) {
-    this.confirmModal = this.modal.confirm({
-      nzTitle: 'ลบ',
-      nzContent: 'ต้องการที่จะลบนักศึกษาคนนี้ออกจากฐานข้อมูลใช่หรือไม่?',
-      nzOnOk: () =>
-          this.studentService.delete(id).subscribe(data => {
-            console.log(this.studentService.delete(id));
-            new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-            this.search(true);
-            this.notification.success('ลบเสร็จสิ้น','ทำกการลบข้อนักมูลศึกษาเสร็จสิ้น')
-          })
-        })
+  rout(id:any) {
+    // this.router.navigate(['student/detail',id],);
+    this.pageState.navigate(this.router, this.route, 'student/detail', { id: id }, null);
+   }
 
+  grade(id:any) {
+    // this.router.navigate(['student/detail',id],);
+    this.pageState.navigate(this.router, this.route, 'student/grade', { id: id }, null);
+   }
+
+  cancel(id: number) {
+   this.modal.confirm({
+    nzTitle: 'ลบ?',
+    nzContent: '<b style="color: red;">ต้องการที่จะลบนักศึกษาคนนี้หรือไม่</b>',
+    nzOkText: 'ลบ',
+    nzOkType: 'primary',
+    nzOkDanger: true,
+    nzOnCancel: () => console.log('OK'),
+    nzCancelText: 'ยกเลิก',
+    nzOnOk: () => {
+      this.getDetail.id = id;
+      console.log(id+"HHHHHHHHHHHHH")
+      this.selectCancelPetition();}
     });
   }
 
-
-  grade(id: number) {
-    this.router.navigate(['student/grade', id],{skipLocationChange: true});
-    console.log("grade"+id);
+  selectCancelPetition() {
+    this.loadingService.show();
+    this.sv.cancel(this.getDetail).pipe(
+      finalize(() => {
+        this.loadingService.hide();
+      }))
+      .subscribe(() => {
+        this.notification.success('สำเร็จ', 'ทำการลบนักศึกษาเรียบร้อยแล้ว');
+        this.search(true);
+      },
+        error => {
+          this.notification.error('Error', error.error.message);
+        });
   }
 
-
-  studentDetails(id: number) {
-    this.router.navigate(['student/detail', id],{skipLocationChange: true});
-    console.log("studentDetails"+id);
-  }
-
-  rout(is:number) {
-    this.router, this.route, '/student/detail', { id: this.id }, null;
-  }
-
-
-
-
-
-
-
+  // grade(id: number) {
+  //   this.router.navigate(['student/grade', id]);
+  // }
 
   listOfColumns: ColumnItem[] = [
     {
+      name: 'รหัสนักศึกษา',
+      sortOrder: null,
+      sortFn: (a: SearchModel, b: SearchModel) => a.studentId.localeCompare(b.studentId),
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false
+    },
+    {
+      name: 'ชื่อ',
+      sortOrder: null,
+      sortFn: (a: SearchModel, b: SearchModel) => a.firstName.localeCompare(b.firstName),
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false
+    },
+    {
+      name: 'นามสกุล',
+      sortOrder: null,
+      sortFn: (a: SearchModel, b: SearchModel) => a.lastName.localeCompare(b.lastName),
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false
+    },
+    {
       name: 'ชั้นปี',
       sortOrder: null,
-      sortFn: (a: SearchModel, b: SearchModel) => a.year.localeCompare(b.year),
+      sortFn: (a: SearchModel, b: SearchModel) => a.classYear.localeCompare(b.classYear),
       sortDirections: ['ascend', 'descend', null],
       filterMultiple: true,
       listOfFilter: [
@@ -186,12 +214,12 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
         { text: 'ปวส.1', value: 'ปวส.1' },
         { text: 'ปวส.2', value: 'ปวส.2' },
       ],
-      filterFn: (list: string[], item: SearchModel) => list.some(year => item.year.indexOf(year) !== -1)
+      filterFn: (list: string[], item: SearchModel) => list.some(classYear => item.classYear.indexOf(classYear) !== -1)
     },
     {
       name: 'สาขา',
       sortOrder: null,
-      sortFn: (a: SearchModel, b: SearchModel) => a.branch.localeCompare(b.branch),
+      sortFn: (a: SearchModel, b: SearchModel) => a.fieldOfStudy.localeCompare(b.fieldOfStudy),
       sortDirections: ['ascend', 'descend', null],
       filterMultiple: true,
       listOfFilter: [
@@ -203,7 +231,7 @@ export class StudentComponent extends AbstractPageComponent implements OnInit {
         { text: 'การจัดการธุรกิจค้าปลีก', value: 'การจัดการธุรกิจค้าปลีก' },
         { text: 'สปาและความงาม', value: 'สปาและความงาม' },
       ],
-      filterFn: (list: string[], item: SearchModel) => list.some(branch => item.branch.indexOf(branch) !== -1)
+      filterFn: (list: string[], item: SearchModel) => list.some(fieldOfStudy => item.fieldOfStudy.indexOf(fieldOfStudy) !== -1)
     }
   ];
 }

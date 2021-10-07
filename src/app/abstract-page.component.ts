@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 @Injectable()
 export abstract class AbstractPageComponent implements OnInit, OnDestroy {
 
-    protected subscriptions: Map<string, Subscription>;
+    protected subscriptions!: Map<string, Subscription>;
     @ViewChild('tableContainer') private readonly _tableContainer!: ElementRef;
 
     scollTable() {

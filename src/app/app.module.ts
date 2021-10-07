@@ -87,6 +87,7 @@ import { StudentModule } from './pages/student/student.module';
 import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component'
 
+import {NgxWebstorageModule} from 'ngx-webstorage';
 registerLocaleData(th);
 
 @NgModule({
@@ -177,6 +178,7 @@ registerLocaleData(th);
     NzWaveModule,
     NzResizableModule,
     NzPipesModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [{ provide: NZ_I18N, useValue: th_TH }],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AbstractPageComponent } from 'src/app/abstract-page.component';
+import { PageStateService } from 'src/app/service/page-state.service';
 import { SearchModel, StudentInfoService } from '../student-info/student-info.service';
 
 @Component({
@@ -7,7 +9,7 @@ import { SearchModel, StudentInfoService } from '../student-info/student-info.se
   templateUrl: './grade.component.html',
   styleUrls: ['./grade.component.css']
 })
-export class GradeComponent implements OnInit {
+export class GradeComponent extends AbstractPageComponent implements OnInit {
 
   dataSet = [
     {
@@ -25,15 +27,28 @@ export class GradeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
-
-  ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-console.log("grade"+this.id);
+    private pageState: PageStateService,
+  ){
+    super();
   }
 
-  addgrade(id:number) {
-    this.router.navigate(['gradedetail',this.id]);
+  rout(id:any) {
+    this.pageState.navigate(this.router, this.route, 'student/grade/detail', { id: id }, null);
+   }
 
-  }
-}
+//   ngOnInit(): void {
+//     this.id = this.route.snapshot.params['id'];
+// console.log("grade"+this.id);
+//   }
+ngOnInit(): void {
+  super.ngOnInit();
+  // this.route.data.subscribe((data) => {
+  //   this.id = data.id;
+  //   this.pageState.getParams().id
+  //   console.log(this.pageState.getParams().id)
+  // });
+
+  // addgrade() {
+  //   this.router.navigate(['gradedetail',this.id]);
+  // }
+}}

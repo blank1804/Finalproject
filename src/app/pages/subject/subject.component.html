@@ -1,18 +1,13 @@
 <div style="height: 100%">
-
   <div class="d-flex flex-column" style="height: 100%">
-
     <nz-breadcrumb>
       <nz-breadcrumb-item>วิชา</nz-breadcrumb-item>
     </nz-breadcrumb>
-
     <div class="toolbar">
       <nz-page-header-extra class="headex">
-        <button class="buttontool" nz-button nzType="primary"><a
-            routerLink="/subject/subjectdetail">เพิ่มวิชา</a></button>
+        <button nz-button nzType="primary" (click)="rout(null)">เพิ่มวิชา</button>
       </nz-page-header-extra>
     </div>
-
     <div nz-row>
       <div nz-col [nzSpan]="24">
         <h3>รายชื่อวิชา</h3>
@@ -21,34 +16,40 @@
     <br />
     <nz-collapse>
       <nz-collapse-panel class="collapse-header" nzHeader="ค้นหา" [nzActive]="true">
-
-
-
-        <form [formGroup]="subjectForm" nzLayout="'vertical'" class="ss-form-search-criteria">
+        <form [formGroup]="searchForm" nzLayout="'vertical'" class="ss-form-search-criteria">
           <nz-row nz-row [nzGutter]="24" class="center">
             <div nz-col nzXs="0" nzSm="0" nzMd="5"></div>
             <div nz-col nzXs="24" nzSm="24" nzMd="6">
               <nz-form-item>
                 <nz-form-label [nzSpan]="6">รหัสวิชา</nz-form-label>
                 <nz-form-control>
-                  <input nz-input formControlName="subjectId" placeholder="" />
+                  <nz-input-group [nzSuffix]="suffixIconSearch">
+                    <input nz-input formControlName="subjectId" placeholder="" />
+                  </nz-input-group>
+                  <ng-template #suffixIconSearch>
+                    <i nz-icon nzType="search"></i>
+                  </ng-template>
                 </nz-form-control>
               </nz-form-item>
             </div>
-
             <div nz-col nzXs="24" nzSm="24" nzMd="6">
               <nz-form-item>
                 <nz-form-label [nzSpan]="6">ขื่อวิชา</nz-form-label>
                 <nz-form-control>
-                  <input nz-input formControlName="subjectName" placeholder="" />
+                  <nz-input-group [nzSuffix]="suffixIconSearch">
+                    <input nz-input formControlName="subjectName" placeholder="" />
+                  </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
             </div>
             <div nz-col nzSm="2" nzMd="6">
               <nz-form-item>
                 <nz-form-control>
-                  <button nz-button nzType="primary" (click)="search(id)">
+                  <button nz-button nzType="primary" (click)="search(true)">
                     ค้นหา
+                  </button>&nbsp;
+                  <button nz-button nzType="primary" (click)="clear()">
+                    รีเซ็ท
                   </button>
                 </nz-form-control>
               </nz-form-item>
@@ -69,23 +70,19 @@
                     [(nzPageIndex)]="this.page.pageNumber" [(nzPageSize)]="this.page.pageSize"
                     (nzPageIndexChange)="search(false)" (nzPageSizeChange)="search(false)" [nzFrontPagination]="false"
                     [nzTotal]="total" [nzLoading]="loadingTable" #headerTable [nzScroll]="{ y: '240px' }">
-                    <thead (nzSortChange)="sort(id)" nzSortFn>
+                    <thead nzSortFn>
                       <tr>
-                        <th
-                        *ngFor="let column of listOfColumns"
-                        [nzSortOrder]="column.sortOrder"
-                        [nzSortFn]="column.sortFn"
-                        [nzSortDirections]="column.sortDirections"
-                        nzWidth="70px" >
-                        {{ column.name }}
-                      </th>
+                        <th nzAlign="center" *ngFor="let column of listOfColumns" [nzSortOrder]="column.sortOrder"
+                          [nzSortFn]="column.sortFn" [nzSortDirections]="column.sortDirections" nzWidth="70px">
+                          {{ column.name }}
+                        </th>
                         <th nzAlign="center" nzColumnKey="subjectId" nzWidth="250px">
                           รหัสวิชา
                         </th>
-                        <th nzAlign="center" nzColumnKey="stdName" nzWidth="250px">
+                        <th nzAlign="center" nzColumnKey="subjectName" nzWidth="250px">
                           ชื่อวิชา
                         </th>
-                        <th nzAlign="center" nzColumnKey="stdLastname" nzWidth="250px">
+                        <th nzAlign="center" nzColumnKey="subjectCredit" nzWidth="250px">
                           จำนวนหน่วยกิจ
                         </th>
                         <th nzAlign="center" nzWidth="250px">จัดการ</th>
@@ -93,21 +90,17 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let data of basicTable.data">
-                        <td nzAlign="center">{{ data.id }}</td>
+                        <td nzAlign="center">{{ data.rowNum }}</td>
                         <td nzAlign="center">{{ data.subjectId }}</td>
                         <td nzAlign="center">{{ data.subjectName }}</td>
                         <td nzAlign="center">{{ data.subjectCredit }}</td>
                         <td nzAlign="center">
-
-                            <button nz-button nzType="primary" nzDanger>
-                              <i nz-icon nzType="edit"></i>
-                            </button>&nbsp;
-                            <button nzType="primary" nz-popconfirm nzPopconfirmTitle="ต้องการลบวิชานี้หรือไม่"
-                              (nzOnConfirm)="delete(data.id)" (nzOnCancel)="cancel()" nzPopconfirmPlacement="topRight"
-                              nz-button nzDanger>
-                              <i nz-icon nzType="delete" nzTheme="fill"></i>
-                            </button>
-
+                          <button nz-button nzType="primary" nzDanger (click)="rout(data.sId)">
+                            <i nz-icon nzType="edit"></i>
+                          </button>&nbsp;
+                          <button nz-button nzType="primary" nzDanger (click)="cancel(data.sId)">
+                            <i nz-icon nzType="delete"></i>
+                          </button>
                         </td>
                       </tr>
                     </tbody>
@@ -121,6 +114,4 @@
     </nz-collapse>
     <br />
   </div>
-
 </div>
-<ng-template> </ng-template>

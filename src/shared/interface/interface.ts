@@ -1,23 +1,21 @@
 export class Page {
     pageNumber = 1;
     pageSize = 10;
-    sorts: Sort[];
+    sorts: Sort[] | undefined;
 }
 export class Sort {
-    colId: String;
-    sort: String;
+    colId: String | undefined;
+    sort: String | undefined;
 }
 
 export class ComboBox {
-    query: String;
-    from: String;
-    to: String;
-    lang: String;
-    currentValue: String;
+    query: String | undefined;
+    from: String | undefined;
+    to: String | undefined;
+    currentValue: String | undefined;
     limit = 10;
 }
 export class PublicAnnounce {
-    websiteCode: String;
-    subjectCode: String;
-    lang: String;
+    websiteCode: String | undefined;
+    subjectCode: String | undefined;
 }

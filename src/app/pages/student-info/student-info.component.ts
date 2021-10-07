@@ -1,28 +1,42 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import { StudentService } from '../student/student.service';
-import {  SearchModel, StudentInfoService } from './student-info.service';
+import { AbstractPageComponent } from 'src/app/abstract-page.component';
+import { PageStateService } from 'src/app/service/page-state.service';
+import {  InfoModel, SearchModel, StudentInfoService } from './student-info.service';
 
 @Component({
   selector: 'app-student-info',
   templateUrl: './student-info.component.html',
   styleUrls: ['./student-info.component.css']
 })
-export class StudentInfoComponent implements OnInit {
+export class StudentInfoComponent extends AbstractPageComponent implements OnInit {
 
   searchModel: SearchModel = {} as SearchModel;
-  id: any;
+  InfoModel: InfoModel = {} as InfoModel;
+  studentdata = [];
   constructor(
     private sv: StudentInfoService,
     private route: ActivatedRoute,
-    private studentinfoService: StudentInfoService) {
+    private pageState: PageStateService,
+) {
+  super();
   }
 
-  ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.studentinfoService.search(this.id).subscribe( data => {
-      this.searchModel = data;
-    });
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.search(this.pageState.getParams().id);
+  }
+
+  search(id:number): void {
+    this.searchModel.id = id;
+    this.sv.search(this.searchModel).pipe(
+      finalize(() => {
+      }))
+      .subscribe((res: any) => {
+        Object.assign(this.InfoModel,res);
+      });
+
   }
 }
+

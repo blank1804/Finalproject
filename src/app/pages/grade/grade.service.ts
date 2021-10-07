@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Page } from 'src/shared/interface/interface';
 
 export interface SubModel {
-  sjId:number
+  sId:number
   subjectId: string,
   subjectName: string,
   subjectCredit: number,

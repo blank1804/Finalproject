@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AppComponent } from 'src/app/app.component';
 import { LoadingService } from 'src/app/core/loading/loading.service';
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     private message: NzMessageService,
     private router: Router,
     private route: ActivatedRoute,
+    private modal: NzModalService
   ) { }
   validateForm!: FormGroup;
   loginin: any;
@@ -83,15 +85,6 @@ export class LoginComponent implements OnInit {
       return
     }
 
-  }
-
-  logout(): void {
-
-    setTimeout(() => {
-      this.loading.show();
-    }, 1000);
-    this.ac.loginin = 'P'
-    this.loading.hide();
   }
 
 }
