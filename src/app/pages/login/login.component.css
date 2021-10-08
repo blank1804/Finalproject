@@ -16,15 +16,15 @@
 
 .login-form-button {
   width: 100%;
-  background-color: #FFC68A;
-  border-color: #FFC68A;
+  background-color: #D83F87;
+  border-color: #D83F87;
   font-size: 20px;
   height: 50px;
 }
 .login-form-button:hover {
   width: 100%;
-  background-color: #CC9E6E;
-  border-color: #CC9E6E;
+  background-color: #e2418c;
+  border-color: #e2418c;
   font-size: 20px;
   height: 50px;
 }
@@ -39,6 +39,7 @@
 }
 .card{
   /* background-color: #6CC3C1; */
+  /* background-color: #12c99842; */
   background-image: url(https://i.imgur.com/xbEufPD.jpg);
   padding-top: 10%;
   position:fixed;
@@ -54,4 +55,8 @@ color: #fff;
 border: 0;
 background-color: #001529;
 border-radius: 15px;
+}
+
+input{
+  height: 110%;
 }

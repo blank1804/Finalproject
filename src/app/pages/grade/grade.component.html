@@ -6,7 +6,7 @@
       <nz-breadcrumb-item>
         <a [routerLink]="['../../']">รายชื่อนักศึกษา</a>
       </nz-breadcrumb-item>
-      <nz-breadcrumb-item>จัดการผลการเรียน
+      <nz-breadcrumb-item>ผลการเรียน
       </nz-breadcrumb-item>
     </nz-breadcrumb>
 
@@ -29,10 +29,7 @@
     <div class="toolbar">
       <nz-page-header-extra class="headex">
 
-        <button class="buttontool" nz-button nzType="primary"  nz-button
-        nzType="primary"
-        >เพิ่มผลการเรียน
-
+        <button nz-button nzType="primary" (click)="rout(null)" nzDanger>เพิ่มผลการเรียน
         </button>
 
       </nz-page-header-extra>

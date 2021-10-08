@@ -5031,6 +5031,13 @@
     "date-fns" "^2.10.0"
     "tslib" "^2.2.0"
 
+"ngx-spinner@^12.0.0":
+  "integrity" "sha512-0BIaLQDBwNApdSWfKYnYA4hSpfgd2bZ9ptBTB+1tOYJHULg67TRqVYswR6H4tNqmGfA8KNivTYXcY7/6RkyjyA=="
+  "resolved" "https://registry.npmjs.org/ngx-spinner/-/ngx-spinner-12.0.0.tgz"
+  "version" "12.0.0"
+  dependencies:
+    "tslib" "^2.1.0"
+
 "ngx-webstorage@^8.0.0":
   "integrity" "sha512-dpHgboSi6adnYpwiAQ2/PRJe8dcvSbM2qWTacTCUPVPeWlhLvTCtIl1GA9BNDiZzYuyA3dmXyqlcDl/Th9Pi2A=="
   "resolved" "https://registry.npmjs.org/ngx-webstorage/-/ngx-webstorage-8.0.0.tgz"

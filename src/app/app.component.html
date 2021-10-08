@@ -1,3 +1,4 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-fussion" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 <div *ngIf="loginin == 'P'">
   <app-login></app-login>
 </div>
@@ -8,53 +9,40 @@
       [nzTrigger]="null">
       <div class="sidebar-logo">
         <a routerLink="/">
-          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+          <img src="https://acegif.com/wp-content/uploads/2021/4fh5wi/pepefrg-8.gif" alt="logo">
           <h1>Grade Manager</h1>
         </a>
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-
-        <li nz-menu-item>
+        <li nz-menu-item nzSelected>
           <i nz-icon nzType="user"></i>
-          <span><a routerLink="/student" >นักศึกษา</a></span>
+          <span><a routerLink="/student">นักศึกษา</a></span>
         </li>
-
-
         <li nz-menu-item>
           <i nz-icon nzType="book"></i>
           <span><a routerLink="/subject">วิชา</a></span>
         </li>
-
-        <!-- <li nz-submenu [nzOpen]="false" nzTitle="Subject" nzIcon="book">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <span><a routerLink="/subject">Manager</a></span>
-          </li>
-        </ul>
-      </li> -->
-      <li nz-menu-item>
-        <i nz-icon nzType="logout"></i>
+        <li nz-menu-item>
+          <i nz-icon nzType="logout"></i>
           <span><a nzType="primary" (click)="logout()" class="buttoncenter savebutton">
-
               Logout
             </a></span>
-      </li>
-
-        <!-- <li nz-menu-item>
-          <button nz-button nzType="primary"></button><i nz-icon nzType="logout"></i>
-          <span><a nzType="primary" (click)="logout()" class="buttoncenter savebutton">
-
-              Logout
-            </a></span>
-        </li> -->
+        </li>
       </ul>
+      <!-- <div class="footer">
+        @Blank<br>final school project.
+        <button  nz-button nzShape="circle" nzSize="large" nzType="primary" (click)="logout()" class="buttoncenter">
+          <i class="off" nz-icon nzType="logout"></i>
+        </button>
+
+      </div> -->
     </nz-sider>
+
     <nz-layout>
       <nz-header>
         <div class="app-header">
           <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
             <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-
           </span>
         </div>
       </nz-header>

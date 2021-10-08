@@ -99,7 +99,7 @@ clear(){
   this.search(true)
 }
 rout(sId: any) {
-  this.pageState.navigate(this.router, this.route, '/subject/subjectdetail', { sId: sId }, null);
+  this.pageState.navigate(this.router, this.route, '/subject/detail', { sId: sId }, null);
 }
 
 cancel(sId: number) {

@@ -24,16 +24,23 @@ export class AppComponent implements OnInit {
   validateForm!: FormGroup;
   // loginin='P';
   loginin = 'O';
-
+  nzOffsetBottom = 10;
   ngOnInit(): void {
   }
 
 
   logout(): void {
     this.modal.confirm({
-      nzTitle: '<i>Do you Want to delete these items?</i>',
-      nzContent: '<b>Some descriptions</b>',
-      nzOnOk: () => this.loginin = 'P'
+      nzTitle: '<i>ออกจากระบบ</i>',
+      nzContent: '<b>ต้องการที่จะออกจากระบบหรือไม่?</b>',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => this.loginin = 'P',
+      nzCancelText: 'No',
+      nzOnCancel: () => { this.router.navigate(['/student']);
+                         }
+
     });
   }
 

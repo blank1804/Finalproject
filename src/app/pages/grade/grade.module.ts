@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentRoutingModule } from './student-routing.module';
-import { StudentComponent } from './student.component';
-import { StudentDetailComponent } from './student-detail.component';
+import { GradeRoutingModule } from './grade-routing.module';
+import { GradeComponent } from './grade.component';
+import { GradeDetailComponent } from './grade-detail.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DemoNgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 import { StudentInfoComponent } from '../student-info/student-info.component';
-import { SearchfilterPipe } from '../../searchfilter.pipe';
+
 @NgModule({
-  imports: [StudentRoutingModule,
+  imports: [ GradeRoutingModule,
             DemoNgZorroAntdModule,
             FormsModule,
             ReactiveFormsModule,
             CommonModule,],
-  declarations: [StudentComponent,
-                StudentDetailComponent,
-                SearchfilterPipe
+  declarations: [ GradeComponent,
+                  GradeDetailComponent,
+                  StudentInfoComponent
+
+
               ],
-  exports: [StudentComponent]
+  exports: [ GradeComponent]
 })
-export class StudentModule { }
+export class  GradeModule { }

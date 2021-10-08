@@ -7,7 +7,7 @@ import { GradeDetailComponent } from '../grade/grade-detail.component';
 const routes: Routes = [
   { path: '', component: StudentComponent, },
   { path: 'detail', component: StudentDetailComponent, },
-  { path: 'grade', component: GradeComponent,}
+  {path: 'grade', loadChildren: () => import('../grade/grade.module').then(m => m.GradeModule) },
   // { path: 'detail/:id', component: StudentDetailComponent, },
   //{ path: 'grade/:id', component: GradeComponent },
 ];

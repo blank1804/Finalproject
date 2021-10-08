@@ -85,3 +85,16 @@ nz-content {
   background-color: #1890ff;
 }
 
+
+.footer {
+  margin-top: 230%;
+  width: 100%;
+  position: relative;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.off {
+  vertical-align: middle;
+}

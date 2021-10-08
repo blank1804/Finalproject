@@ -88,14 +88,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component'
 
 import {NgxWebstorageModule} from 'ngx-webstorage';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 registerLocaleData(th);
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SubjectComponent,
-    SubjectDetailComponent,
     UserComponent,
   ],
   imports: [
@@ -179,6 +179,7 @@ registerLocaleData(th);
     NzResizableModule,
     NzPipesModule,
     NgxWebstorageModule.forRoot(),
+    NgxSpinnerModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: th_TH }],
   bootstrap: [AppComponent]

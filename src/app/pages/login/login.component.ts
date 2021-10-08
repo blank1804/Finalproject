@@ -6,6 +6,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AppComponent } from 'src/app/app.component';
 import { LoadingService } from 'src/app/core/loading/loading.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 export interface login {
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     private message: NzMessageService,
     private router: Router,
     private route: ActivatedRoute,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private spinner: NgxSpinnerService
   ) { }
   validateForm!: FormGroup;
   loginin: any;
@@ -55,11 +57,11 @@ export class LoginComponent implements OnInit {
     }
     if (this.validateForm.controls.userName.value == 'admin$' && this.validateForm.controls.password.value == 'admin$')
     {
-      this.loading.show();
+      this.spinner.show();
       this.isLoading = true;
       setTimeout(() => {
         this.ac.loginin = 'O';
-        this.loading.hide();
+        this.spinner.hide();
       }, 1000);
       this.router.navigate(['']);
       setTimeout(() => {

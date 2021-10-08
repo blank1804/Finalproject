@@ -14,152 +14,26 @@
 
     <div class="toolbar">
       <nz-page-header-extra class="headex">
-        <button class="buttontool" nz-button nzType="primary">
-
-        </button>
+        <button class="buttontool" nz-button nzType="primary"></button>
       </nz-page-header-extra>
     </div>
+
     <div nz-row>
       <div nz-col [nzSpan]="24">
-        <h3>เพิ่มผลการเรียนนักศึกษา<h6>{{searchModel.preName}} {{searchModel.firstName}} {{searchModel.lastName}}      {{searchModel.studentId}}
-          </h6>
-        </h3>
-      </div>
-      <div nz-col [nzSpan]="24">
-        ปีการศึกษา:
-      <nz-select class="s2" ngModel="2564">
-        <nz-option nzValue="2564" nzLabel="2564"></nz-option>
-        <nz-option nzValue="2563" nzLabel="2563"></nz-option>
-        <nz-option nzValue="2562" nzLabel="2562" ></nz-option>
-      </nz-select>
-      ภาคเรียน:
-      <nz-select class="s1" ngModel="2">
-        <nz-option nzValue="1" nzLabel="1"></nz-option>
-        <nz-option nzValue="2" nzLabel="2"></nz-option>
-
-      </nz-select>
+        <h3>เพิ่มผลการเรียน</h3>
       </div>
     </div>
+    <br />
     <nz-collapse>
-      <nz-collapse-panel class="collapse-header" nzHeader="รายชื่อ" [nzActive]="true">
-        <div class="d-flex flex-column" style="height: 100%">
-          <div class="flex-grow">
-            <div nz-row [nzGutter]="24">
-              <div nz-col [nzSpan]="24">
-                <div #tableContainer class="table_container">
-                  <nz-table #basicTable nzBordered nzFooter="GPS=0 | GPA=0" [nzPageSize]="50"
-                    [nzScroll]="{ y: '340px' }">
-                    <thead>
-                      <tr>
-                        <th style="background-color: #DADADA;">วิชา</th>
-                        <th  style="background-color: #DADADA;">หน่วยกิต</th>
-                        <th  style="background-color: #DADADA;">ผลการเรียน</th>
-                        <th  style="background-color: #DADADA;">จัดการ</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td [width]="300">
-                          <nz-select nzPlaceHolder="เลือกวิชา" nzBorderless ngModel="lucy">
-                            <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.subjectName"
-                              [nzValue]="option.subjectName"></nz-option>
-                          </nz-select>
-                        </td>
-                        <td> </td>
-                        <td>
-                          <nz-input-number [nzMin]="0" [nzMax]="4" [nzStep]="0.5" [nzPlaceHolder]="'0'">
-                          </nz-input-number>
-                        </td>
-                        <td><button nz-button nzType="primary" nzDanger>
-                            <i nz-icon nzType="delete"></i>
-                          </button> &nbsp; </td>
+      <nz-collapse-panel class="collapse-header" nzHeader="เพิ่มผลการเรียน" [nzActive]="true">
 
+        <form [formGroup]="gradSubmitForm" nzLayout="'vertical'" class="ss-form-search-criteria">
 
-                      </tr>
-                      <tr>
-                        <td [width]="300">
-                          <nz-select nzPlaceHolder="เลือกวิชา" nzBorderless ngModel="lucy">
-                            <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.subjectName"
-                              [nzValue]="option.subjectName"></nz-option>
-                          </nz-select>
-                        </td>
-                        <td> </td>
-                        <td>
-                          <nz-input-number [nzMin]="0" [nzMax]="4" [nzStep]="0.5" [nzPlaceHolder]="'0'">
-                          </nz-input-number>
-                        </td>
-                        <td><button nz-button nzType="primary" nzDanger>
-                            <i nz-icon nzType="delete"></i>
-                          </button> &nbsp; </td>
-
-
-                      </tr>
-                      <tr>
-                        <td [width]="300">
-                          <nz-select nzPlaceHolder="เลือกวิชา" nzBorderless ngModel="lucy">
-                            <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.subjectName"
-                              [nzValue]="option.subjectName"></nz-option>
-                          </nz-select>
-                        </td>
-                        <td> </td>
-                        <td>
-                          <nz-input-number [nzMin]="0" [nzMax]="4" [nzStep]="0.5" [nzPlaceHolder]="'0'">
-                          </nz-input-number>
-                        </td>
-                        <td><button nz-button nzType="primary" nzDanger>
-                            <i nz-icon nzType="delete"></i>
-                          </button> &nbsp; </td>
-
-
-                      </tr>
-                      <tr>
-                        <td [width]="300">
-                          <nz-select nzPlaceHolder="เลือกวิชา" nzBorderless ngModel="lucy">
-                            <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.subjectName"
-                              [nzValue]="option.subjectName"></nz-option>
-                          </nz-select>
-                        </td>
-                        <td> </td>
-                        <td>
-                          <nz-input-number [nzMin]="0" [nzMax]="4" [nzStep]="0.5" [nzPlaceHolder]="'0'">
-                          </nz-input-number>
-                        </td>
-                        <td><button nz-button nzType="primary" nzDanger>
-                            <i nz-icon nzType="delete"></i>
-                          </button> &nbsp; </td>
-
-
-                      </tr>
-                      <tr>
-                        <td [width]="300">
-                          <nz-select nzPlaceHolder="เลือกวิชา" nzBorderless ngModel="lucy">
-                            <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.subjectName"
-                              [nzValue]="option.subjectName"></nz-option>
-                          </nz-select>
-                        </td>
-                        <td> </td>
-                        <td>
-                          <nz-input-number [nzMin]="0" [nzMax]="4" [nzStep]="0.5" [nzPlaceHolder]="'0'">
-                          </nz-input-number>
-                        </td>
-                        <td><button nz-button nzType="primary" nzDanger>
-                            <i nz-icon nzType="delete"></i>
-                          </button> &nbsp; </td>
-
-
-                      </tr>
-                    </tbody>
-                  </nz-table>
-                  <div style="text-align: center;">
-                  <button nz-button nzType="primary">บันทึกผลการเรียน</button>
-                </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-          </div>
-
-        </div>
+        </form>
+      </nz-collapse-panel>
+    </nz-collapse>
+    <br />
+    <br />
+  </div>
+</div>
+<ng-template> </ng-template>

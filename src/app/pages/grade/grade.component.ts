@@ -23,6 +23,8 @@ export class GradeComponent extends AbstractPageComponent implements OnInit {
       gpa: 3.86
     },
   ];
+
+
   id!: number;
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +35,7 @@ export class GradeComponent extends AbstractPageComponent implements OnInit {
   }
 
   rout(id:any) {
-    this.pageState.navigate(this.router, this.route, 'student/grade/detail', { id: id }, null);
+    this.pageState.navigate(this.router, this.route, '/student/grade/detail', { id: id }, null);
    }
 
 //   ngOnInit(): void {
